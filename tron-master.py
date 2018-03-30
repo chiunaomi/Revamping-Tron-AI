@@ -34,7 +34,7 @@ class PyGameWindowView(object):
         self.model._draw_players()
         pygame.display.update()
 
-class TronModelView(object):
+class TronModel(object):
     """Model object containing the players, the game state, all cells, and the cells that have been hit."""
     def __init__(self,cell_length,width,height):
         pygame.init()
