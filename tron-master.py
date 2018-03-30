@@ -51,11 +51,13 @@ class TronModelView(object):
             for j in range(self.width//cell_length):
                 self.cell_lst.append(Cell((i*self.cell_length,j*self.cell_length),cell_length))
         self.game_over = False
+        #self.obstacle1 = Obstacle(self.screen,10,100,10,"b",(0,0,255))
 
     def _draw_players(self):
         """Calls the player objects' draw functions"""
         self.player1.draw()
         self.player2.draw()
+        #self.obstacle1.draw()
 
     def in_cell(self):
         """Loops through cell_lst to find the cell whose xrange contains player.x
@@ -101,6 +103,34 @@ class TronModelView(object):
         self.game_over = True
         self.player1.dir = "None"
         self.player2.dir = "None"
+
+#class Obstacle(pygame.sprite.Sprite):
+#    def __init__(self, color, width):
+#            self.color = color
+#            pygame.sprite.Sprite.__init__(self)
+#            self.image = pygame.Surface([width, width])
+#            self.image.fill(self.color)
+#            self.rect = self.image.get_rect()
+
+#    def _draw_obstacles(self):
+#        """Calls the player objects' draw functions"""
+#        self.rect.draw()
+
+#class Obstacle(object):
+#    """Contains player's location, direction and speed, as well as their color"""
+#    def __init__(self, draw_screen, dimension, posx, posy, color=(255,255,255)):
+#        self.draw_screen = draw_screen
+#        self.width = dimension
+#        self.height = dimension
+#        self.x = start_posx
+#        self.y = start_posy
+#        self.dir = direction
+#        self.color = color
+#        self.current_cell = None
+
+#    def draw(self):
+#        width = 1
+#        pygame.draw.rect(self.draw_screen,self.color,pygame.Rect(self.x,self.y,self.width,self.height))
 
 class Cell(object):
     """Square object with area and location
@@ -214,13 +244,31 @@ if __name__ == '__main__':
     def main_loop():
         """A nested loop which initializes the game and runs the model until the end game protocol is called.
         Hitting the space bar after a game ends reinitializes the loop which allows for a new match"""
+        window =  pygame.display.set_mode((640,480))
         pygame.init()
         running = True
+        black=(0,0,0)
+        end_it=False
+        while (end_it==False):
+            window.fill(black)
+            myfont=pygame.font.SysFont("Britannic Bold", 40)
+            nlabel=myfont.render("Welcome- "" click to  Start", 1, (255, 0, 0))
+            for event in pygame.event.get():
+                if event.type==MOUSEBUTTONDOWN:
+                    end_it=True
+        window.blit(nlabel,(200,200))
+        pygame.display.flip()
+        #The above code makes the start screen
+        #Right now there is an issue where the words are not appearing until the click
+        #There is also probably a way to make this a class which would be cleaner
+
+
         while running:
             model = TronModelView(10,640,480)
             view = PyGameWindowView(model,640,480)
             view._init_draw()
             controller = KeyControl(model)
+
 
             game_over = False
             while not game_over:
@@ -234,6 +282,7 @@ if __name__ == '__main__':
                 model.update()
                 view.draw()
                 time.sleep(.1)
+
             for event in pygame.event.get():
                 if event.type == QUIT:
                     running = False
