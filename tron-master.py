@@ -238,7 +238,7 @@ if __name__ == '__main__':
 
 
         while running:
-            model = TronModelView(10,640,480)
+            model = TronModel(10,640,480)
             view = PyGameWindowView(model,640,480)
             view._init_draw()
             controller = KeyControl(model)
