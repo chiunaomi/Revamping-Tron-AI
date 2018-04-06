@@ -221,22 +221,6 @@ if __name__ == '__main__':
         window =  pygame.display.set_mode((640,480))
         pygame.init()
         running = True
-        black=(0,0,0)
-        end_it=False
-        while (end_it==False):
-            window.fill(black)
-            myfont=pygame.font.SysFont("Britannic Bold", 40)
-            nlabel=myfont.render("Welcome- "" click to  Start", 1, (255, 0, 0))
-            for event in pygame.event.get():
-                if event.type==MOUSEBUTTONDOWN:
-                    end_it=True
-        window.blit(nlabel,(200,200))
-        pygame.display.flip()
-        #The above code makes the start screen
-        #Right now there is an issue where the words are not appearing until the click
-        #There is also probably a way to make this a class which would be cleaner
-
-
         while running:
             model = TronModel(10,640,480)
             view = PyGameWindowView(model,640,480)
