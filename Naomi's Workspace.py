@@ -16,6 +16,16 @@ class PyGameWindowView(object):
         size = (width,height)
         self.model.screen = pygame.display.set_mode(size)
 
+    def start_screen(self):
+        black = (0,0,0)
+        myfont = pygame.font.SysFont("Britannic Bold", 50)
+        label1= myfont.render("Welcome to Tron Revamped", 1, (0, 150, 150))
+        label2 = myfont.render("Click to Start", 1, (0, 255, 0))
+        self.model.screen.fill(black)
+        self.model.screen.blit(label1,(90,100))
+        self.model.screen.blit(label2,(200,200))
+        pygame.display.flip()
+
     def _init_draw(self):
         """Draws the grid on the screen and is only called at the beginning of a game."""
         self.model.screen.fill((105,105,105))
@@ -51,7 +61,7 @@ class TronModel(object):
             for j in range(self.width//cell_length):
                 self.cell_lst.append(Cell((i*self.cell_length,j*self.cell_length),cell_length))
         self.game_over = False
-
+        self.end_start = False
 
     def _draw_players(self):
         """Calls the player objects' draw functions"""
@@ -182,6 +192,8 @@ class KeyControl(object):
         self.model = model
 
     def handle_event(self, event):
+        if event.type == MOUSEBUTTONDOWN and self.model.end_start == False:
+            return True
         if event.type != KEYDOWN:
             return #if no keys were pressed it quits
         if event.key == pygame.K_LEFT and self.model.game_over != True:
@@ -221,30 +233,25 @@ if __name__ == '__main__':
         window =  pygame.display.set_mode((640,480))
         pygame.init()
         running = True
-        black=(0,0,0)
-        end_it=False
-        myfont=pygame.font.SysFont("Britannic Bold", 40)
-        nlabel=myfont.render("Welcome- "" click to  Start", 1, (255, 0, 0))
-        while (end_it==False):
-            window.fill(black)
-            window.blit(nlabel,(200,200))
-            for event in pygame.event.get():
-                if event.type==MOUSEBUTTONDOWN:
-                    end_it=True
-        pygame.display.flip()
-        #The above code makes the start screen
-        #Right now there is an issue where the words are not appearing until the click
-        #There is also probably a way to make this a class which would be cleaner
-
-
         while running:
             model = TronModel(10,640,480)
             view = PyGameWindowView(model,640,480)
-            view._init_draw()
             controller = KeyControl(model)
-
-
+            end_start = False
             game_over = False
+
+            while not end_start:
+                view.start_screen()
+                for event in pygame.event.get():
+                    if event.type == QUIT: #if the window is closed, break out of the two while loops and go to pygame.quit()
+                        running = False
+                        end_start = True
+                        game_over = True
+                    if controller.handle_event(event):
+                        model.end_start = True
+                        end_start = True
+            view._init_draw()
+
             while not game_over:
                 for event in pygame.event.get():
                     if event.type == QUIT: #if the window is closed, break out of the two while loops and go to pygame.quit()
