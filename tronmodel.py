@@ -73,14 +73,11 @@ class TronModel(object):
         black = (0, 0, 0)
         myfont = pygame.font.SysFont("Britannic Bold", 50)
         label1= myfont.render(player + "WINS!", 1, (0, 150, 150))
-        label2 = myfont.render("Press Enter to Restart", 1, (0, 255, 0))
+        label2 = myfont.render("Press Space to Restart", 1, (0, 255, 0))
         self.screen.fill(black)
         self.screen.blit(label1,(185,100))
         self.screen.blit(label2,(138,200))
         pygame.display.flip()
-        self.game_over = True
-        self.player1.dir = "None"
-        self.player2.dir = "None"
         self.game_over = True
         self.player1.dir = "None"
         self.player2.dir = "None"
