@@ -37,5 +37,6 @@ class PyGameWindowView(object):
 
     def draw(self):
         """Draws the player paths and is updated and redrawn constantly"""
-        self.model._draw_players()
+        if not self.model.game_over:
+            self.model._draw_players()
         pygame.display.update()
