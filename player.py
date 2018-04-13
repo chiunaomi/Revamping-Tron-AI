@@ -1,3 +1,6 @@
+"""
+Player class that defines the behavior of the players.
+"""
 import pygame
 from pygame.locals import*
 import time

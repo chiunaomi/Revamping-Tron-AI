@@ -1,8 +1,10 @@
+"""
+Controller class that takes player input and translates that to directions taken by the player objects.
+""""
+
 import pygame
 from pygame.locals import*
 import time
-
-
 
 class KeyControl(object):
     """Assigns key strokes as actions and implements them in game model"""

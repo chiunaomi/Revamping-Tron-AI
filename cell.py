@@ -1,5 +1,5 @@
 """
-
+Cell object used to draw the background grid and define the paths of the players.
 """
 import pygame
 from pygame.locals import*
