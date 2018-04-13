@@ -30,11 +30,11 @@ class PyGameWindowView(object):
         """Draws the grid on the screen and is only called at the beginning of a game."""
         self.model.screen.fill((105,105,105))
         self.model.cells = {}
-        cell_size = (self.model.cell_length, self.model.cell_length)
+        cell_length = self.model.cell_length
         for i in range(self.model.height):
             for j in range(self.model.width):
                 cell_coord = (i*self.model.cell_length,j*self.model.cell_length)
-                self.model.cells[(i,j)] = Cellview(self.model.screen,cell_coord,cell_size)
+                self.model.cells[(i,j)] = Cell(self.model.screen,cell_coord,cell_length)
         all_cells = self.model.cells.values()
         for cell in all_cells:
             cell.draw()
@@ -59,7 +59,7 @@ class TronModel(object):
         self.player2 = Player(self.screen,10,(self.width/2-100),(self.height/2),"l",(0,255,0))
         for i in range(self.height//cell_length):
             for j in range(self.width//cell_length):
-                self.cell_lst.append(Cell((i*self.cell_length,j*self.cell_length),cell_length))
+                self.cell_lst.append(Cell(self.screen,(i*self.cell_length,j*self.cell_length),self.cell_length))
         self.game_over = False
         self.end_start = False
 
@@ -114,22 +114,15 @@ class TronModel(object):
         self.player1.dir = "None"
         self.player2.dir = "None"
 
-
-
 class Cell(object):
-    """Square object with area and location
-    Used as building block for game grid"""
-    def __init__(self, coords, cell_length):
-        self.xrange = range(coords[0],coords[0]+cell_length)
-        self.yrange = range(coords[1],coords[1]+cell_length)
-
-class Cellview(object):
     """Cell object defining the visualized form of a cell.
     Not used structurally to define player locations, but used to visualize the game"""
     def __init__(self, draw_screen, coordinates, side_length):
+        self.xrange = range(coordinates[0],coordinates[0]+side_length)
+        self.yrange = range(coordinates[1],coordinates[1]+side_length)
         self.draw_screen = draw_screen
         self.coordinates = coordinates
-        self.side_length = side_length
+        self.side_length = (side_length,side_length)
         self.color = (0, 0, 0)
 
     def draw(self):
