@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import*
 import time
-from cellview import Cellview
+from cell import Cell
 
 
 class PyGameWindowView(object):
@@ -26,11 +26,11 @@ class PyGameWindowView(object):
         """Draws the grid on the screen and is only called at the beginning of a game."""
         self.model.screen.fill((105,105,105))
         self.model.cells = {}
-        cell_size = (self.model.cell_length, self.model.cell_length)
+        cell_size = self.model.cell_length
         for i in range(self.model.height):
             for j in range(self.model.width):
                 cell_coord = (i*self.model.cell_length,j*self.model.cell_length)
-                self.model.cells[(i,j)] = Cellview(self.model.screen,cell_coord,cell_size)
+                self.model.cells[(i,j)] = Cell(self.model.screen,cell_coord,cell_size)
         all_cells = self.model.cells.values()
         for cell in all_cells:
             cell.draw()

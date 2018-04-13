@@ -20,7 +20,7 @@ class TronModel(object):
         self.player2 = Player(self.screen,10,(self.width/2-100),(self.height/2),"l",(0,250,0))
         for i in range(self.height//cell_length):
             for j in range(self.width//cell_length):
-                self.cell_lst.append(Cell((i*self.cell_length,j*self.cell_length),cell_length))
+                self.cell_lst.append(Cell(self.screen,(i*self.cell_length,j*self.cell_length),cell_length))
         self.game_over = False
         self.end_start = False
 

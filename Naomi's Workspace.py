@@ -122,7 +122,7 @@ class Cell(object):
         self.yrange = range(coordinates[1],coordinates[1]+side_length)
         self.draw_screen = draw_screen
         self.coordinates = coordinates
-        self.side_length = side_length
+        self.side_length = (side_length,side_length)
         self.color = (0, 0, 0)
 
     def draw(self):

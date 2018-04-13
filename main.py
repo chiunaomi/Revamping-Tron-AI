@@ -4,7 +4,6 @@ import time
 
 from keycontrol import KeyControl
 from player import Player
-from cellview import Cellview
 from cell import Cell
 from pygamewindowview import PyGameWindowView
 from tronmodel import TronModel
