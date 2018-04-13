@@ -2,7 +2,6 @@ import pygame
 from pygame.locals import*
 import time
 
-
 class Player(object):
     """Contains player's location, direction and speed, as well as their color"""
     def __init__(self, draw_screen, dimension, start_posx, start_posy, direction, color=(255,255,255)):

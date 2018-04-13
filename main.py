@@ -8,10 +8,6 @@ from cell import Cell
 from pygamewindowview import PyGameWindowView
 from tronmodel import TronModel
 
-
-
-
-
 if __name__ == '__main__':
 
     def main_loop():

@@ -3,6 +3,9 @@ Master Copy
 Tron Remake
 
 @author: Naomi Chiu and Hadleigh Nunes
+
+Original copy of working code from MP 4 by Naomi and Hadleigh
+Basis code for Tron game framework
 """
 import pygame
 from pygame.locals import*
