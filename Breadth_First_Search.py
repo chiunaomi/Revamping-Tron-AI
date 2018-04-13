@@ -108,4 +108,20 @@ def reconstruct_path(came_from, start, goal): #should display path
     path.reverse() # optional
     return path
 draw_grid(myGrid, width = 2, path = reconstruct_path(came_from, start = (8,7), goal = (endx, endy)))
+
+
+def get_path(grid, start, end): #same as reconstruct_path
+    came_from = bfs_grid(grid, start, end)
+    current = endspath = [end]
+    while not current ==start:
+        current = came_from[current]
+        path.append(current)
+    return path.reverse()
+
+
+
+
+
+
+
 """
