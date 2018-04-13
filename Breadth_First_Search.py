@@ -77,10 +77,11 @@ myGrid.walls = DIAGRAM1_WALLS
 """makes a list of walls - same as areas already been to in tron"""
 draw_grid(myGrid)
 
+"""
 from tronmodel import TronModel
 model = TronModel(10,640,480) #cell size, screen dimension
 grid = model.cell_lst
-
+"""
 
 
 """
@@ -107,8 +108,8 @@ def bfs_grid(graph, start):
                 came_from[next] = True
     return came_from
 
-parents = bfs_grid(grid, (8,7))
-draw_grid(gird, width = 2, point_to = parents, start = (8,7))
+parents = bfs_grid(myGrid, (8,7))
+draw_grid(myGird, width = 2, point_to = parents, start = (8,7))
 
 #compute endx, endy from search to determine longest dist
 
