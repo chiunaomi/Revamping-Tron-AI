@@ -1,8 +1,6 @@
 """
-Master Copy
-Tron Remake
-
-@author: Naomi Chiu and Hadleigh Nunes
+Entire code in one file for ease in editing how classes work together.
+Edits made here are transferred into individual files for final code. 
 """
 import pygame
 from pygame.locals import*

@@ -1,3 +1,8 @@
+"""
+Contains the model class for our MVC structure.
+Model updates the state of the game.
+"""
+
 import pygame
 from pygame.locals import*
 import time
@@ -29,7 +34,6 @@ class TronModel(object):
         self.player1.draw()
         self.player2.draw()
 
-
     def in_cell(self):
         """Loops through cell_lst to find the cell whose xrange contains player.x
         and whose yrange contains player.y, and sets the player location to be within that cell."""
@@ -54,7 +58,7 @@ class TronModel(object):
         last_seen_p1 = self.player1.current_cell
         last_seen_p2 = self.player2.current_cell
         # Saving the player locations before updating in order to test to see if the players
-        #have entered a new cell.
+        # have entered a new cell.
         self.in_cell()
         if self.player1.current_cell != last_seen_p1:
             self.player_paths.append(last_seen_p1)
@@ -69,7 +73,7 @@ class TronModel(object):
             self.end_game("ORANGE ",(255,140,0))
 
     def end_game(self,player,color):
-        """Contains end game protocol"""
+        """Contains end game protocol and end game display."""
         black = (0, 0, 0)
         myfont = pygame.font.SysFont("Britannic Bold", 50)
         label1= myfont.render(player + "WINS!", 1, color)

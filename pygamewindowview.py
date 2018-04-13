@@ -1,8 +1,11 @@
+"""
+Contains the view class for our MVC structure.
+View displays the model's state in the PyGame window.
+"""
 import pygame
 from pygame.locals import*
 import time
 from cell import Cell
-
 
 class PyGameWindowView(object):
     """View object containing the visual elements of the game.
