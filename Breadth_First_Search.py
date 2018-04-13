@@ -77,6 +77,21 @@ myGrid.walls = DIAGRAM1_WALLS
 """makes a list of walls - same as areas already been to in tron"""
 draw_grid(myGrid)
 
+from tronmodel import TronModel
+model = TronModel(10,640,480) #cell size, screen dimension
+grid = model.cell_lst
+
+
+
+"""
+tron model self.cell_lst
+ - list of all cell_s
+
+
+"""
+
+
+
 def bfs_grid(graph, start):
     #actual alogrithm - send gird, gamestate, and player's location)
     frontier = Queue()
@@ -91,8 +106,9 @@ def bfs_grid(graph, start):
                 frontier.put(next)
                 came_from[next] = True
     return came_from
-parents = bfs_grid(myGrid, (8,7))
-draw_grid(myGrid, width = 2, point_to = parents, start = (8,7))
+
+parents = bfs_grid(grid, (8,7))
+draw_grid(gird, width = 2, point_to = parents, start = (8,7))
 
 #compute endx, endy from search to determine longest dist
 
@@ -117,10 +133,6 @@ def get_path(grid, start, end): #same as reconstruct_path
         current = came_from[current]
         path.append(current)
     return path.reverse()
-
-
-
-
 
 
 
