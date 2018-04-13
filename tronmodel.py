@@ -17,7 +17,7 @@ class TronModel(object):
         self.cell_lst = []
         self.player_paths = []
         self.player1 = Player(self.screen,10,(self.width/2+100),(self.height/2),"r",(255,140,0))
-        self.player2 = Player(self.screen,10,(self.width/2-100),(self.height/2),"l",(0,255,0))
+        self.player2 = Player(self.screen,10,(self.width/2-100),(self.height/2),"l",(0,250,0))
         for i in range(self.height//cell_length):
             for j in range(self.width//cell_length):
                 self.cell_lst.append(Cell((i*self.cell_length,j*self.cell_length),cell_length))
@@ -47,9 +47,9 @@ class TronModel(object):
         self.player1.update()
         self.player2.update()
         if self.player1.crash():
-            self.end_game("GREEN ")
+            self.end_game("GREEN ",(0,250,0))
         if self.player2.crash():
-            self.end_game("ORANGE ")
+            self.end_game("ORANGE ",(255,140,0))
 
         last_seen_p1 = self.player1.current_cell
         last_seen_p2 = self.player2.current_cell
@@ -64,16 +64,16 @@ class TronModel(object):
         #added to the list of cells that have been hit
 
         if self.player1.current_cell in self.player_paths:
-            self.end_game("GREEN ")
+            self.end_game("GREEN ",(0,250,0))
         if self.player2.current_cell in self.player_paths:
-            self.end_game("ORANGE ")
+            self.end_game("ORANGE ",(255,140,0))
 
-    def end_game(self,player):
+    def end_game(self,player,color):
         """Contains end game protocol"""
         black = (0, 0, 0)
         myfont = pygame.font.SysFont("Britannic Bold", 50)
-        label1= myfont.render(player + "WINS!", 1, (0, 150, 150))
-        label2 = myfont.render("Press Space to Restart", 1, (0, 255, 0))
+        label1= myfont.render(player + "WINS!", 1, color)
+        label2 = myfont.render("Press Space to Restart", 1, (255,255,255))
         self.screen.fill(black)
         self.screen.blit(label1,(185,100))
         self.screen.blit(label2,(138,200))
