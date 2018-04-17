@@ -114,6 +114,13 @@ draw_grid(myGird, width = 2, point_to = parents, start = (8,7))
 #compute endx, endy from search to determine longest dist
 
 """
+determine distance to each point
+return coordinates of point for which max distance is traveled
+use reconstruct_path to send commands to 'player' AI
+"""
+
+
+"""
 
 def reconstruct_path(came_from, start, goal): #should display path
     current = goal
