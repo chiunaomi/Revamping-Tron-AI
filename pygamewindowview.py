@@ -19,10 +19,10 @@ class PyGameWindowView(object):
         black = (0,0,0)
         myfont = pygame.font.SysFont("Britannic Bold", 50)
         label1= myfont.render("Welcome to Tron Revamped", 1, (0, 150, 150))
-        label2 = myfont.render("Click to Start", 1, (0, 255, 0))
+        label2 = myfont.render("Press Space to Start", 1, (0, 255, 0))
         self.model.screen.fill(black)
         self.model.screen.blit(label1,(90,100))
-        self.model.screen.blit(label2,(200,200))
+        self.model.screen.blit(label2,(150,200))
         pygame.display.flip()
 
     def _init_draw(self):

@@ -1,6 +1,6 @@
 """
 Entire code in one file for ease in editing how classes work together.
-Edits made here are transferred into individual files for final code. 
+Edits made here are transferred into individual files for final code.
 """
 import pygame
 from pygame.locals import*
@@ -18,10 +18,10 @@ class PyGameWindowView(object):
         black = (0,0,0)
         myfont = pygame.font.SysFont("Britannic Bold", 50)
         label1= myfont.render("Welcome to Tron Revamped", 1, (0, 150, 150))
-        label2 = myfont.render("Click to Start", 1, (0, 255, 0))
+        label2 = myfont.render("Press Space to Start", 1, (0, 255, 0))
         self.model.screen.fill(black)
         self.model.screen.blit(label1,(90,100))
-        self.model.screen.blit(label2,(200,200))
+        self.model.screen.blit(label2,(150,200))
         pygame.display.flip()
 
     def _init_draw(self):
@@ -183,8 +183,6 @@ class KeyControl(object):
         self.model = model
 
     def handle_event(self, event):
-        if event.type == MOUSEBUTTONDOWN and self.model.end_start == False:
-            return True
         if event.type != KEYDOWN:
             return #if no keys were pressed it quits
         if event.key == pygame.K_LEFT and self.model.game_over != True:
@@ -213,6 +211,8 @@ class KeyControl(object):
             if self.model.player2.dir != "d":
                 self.model.player2.dir = "u"
 
+        if event.key == pygame.K_SPACE and self.model.end_start == False:
+            return True
         if event.key == pygame.K_SPACE and self.model.game_over == True:
             return True
 
