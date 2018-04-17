@@ -94,7 +94,7 @@ tron model self.cell_lst
 
 
 def bfs_grid(graph, start):
-    #actual alogrithm - send gird, gamestate, and player's location)
+    #actual alogrithm - send gird, gamestate, and player's location
     frontier = Queue()
     frontier.put(start)
     came_from = {}
@@ -108,8 +108,11 @@ def bfs_grid(graph, start):
                 came_from[next] = True
     return came_from
 
-parents = bfs_grid(myGrid, (8,7))
-draw_grid(myGird, width = 2, point_to = parents, start = (8,7))
+parents = bfs_grid(myGrid, (8,5))
+#draw_grid(myGrid, width = 2, point_to = parents, start = (8,7))
+
+draw_grid(myGrid, width = 2, number = parents, start = (8,5))
+
 
 #compute endx, endy from search to determine longest dist
 
