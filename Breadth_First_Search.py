@@ -125,7 +125,7 @@ use reconstruct_path to send commands to 'player' AI
 """
 
 
-"""
+
 
 def reconstruct_path(came_from, start, goal): #should display path
     current = goal
@@ -136,7 +136,8 @@ def reconstruct_path(came_from, start, goal): #should display path
     path.append(start) # optional
     path.reverse() # optional
     return path
-draw_grid(myGrid, width = 2, path = reconstruct_path(came_from, start = (8,7), goal = (endx, endy)))
+
+#draw_grid(myGrid, width = 2, path = reconstruct_path(parents, start = (8,5), goal=(17,2)))
 
 
 def get_path(grid, start, end): #same as reconstruct_path
@@ -147,6 +148,4 @@ def get_path(grid, start, end): #same as reconstruct_path
         path.append(current)
     return path.reverse()
 
-
-
-"""
+draw_grid(myGrid, width = 2, path = get_path(parents, start = (8,5), goal=(17,2)))
