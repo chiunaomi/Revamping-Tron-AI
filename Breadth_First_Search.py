@@ -93,23 +93,36 @@ tron model self.cell_lst
 
 
 
-def bfs_grid(graph, start):
-    #actual alogrithm - send gird, gamestate, and player's location)
+def bfs_grid(graph, start, goal):
+    #actual alogrithm - send gird, gamestate, and player's location
     frontier = Queue()
     frontier.put(start)
     came_from = {}
     came_from[start] = True
+    #cost_so_far = {}
+    #cost_so_far[start] =
+    cost_so_far = 0
+
 
     while not frontier.empty():
         current = frontier.get() #gets next 'frontier'(verticie) from the queue
+        if current == goal:
+            break
         for next in graph.neighbors(current):
+            #new_cost = cost_so_far[current] + graph.cost(current, next)
             if next not in came_from:
+                #cost_so_far[next] = new_cost
                 frontier.put(next)
                 came_from[next] = True
-    return came_from
+                cost_so_far +=1
+    return came_from, cost_so_far
 
-parents = bfs_grid(myGrid, (8,7))
-draw_grid(myGird, width = 2, point_to = parents, start = (8,7))
+parents = bfs_grid(myGrid, (8,5), (17,10))
+#draw_grid(myGrid, width = 2, point_to = parents, start = (8,7))
+
+draw_grid(myGrid, width = 2, number = parents, start = (8,5), goal=(17,10))
+
+draw_grid(myGrid, width = 2, number = parents, start = (8,5), goal=(17,10))
 
 #compute endx, endy from search to determine longest dist
 
@@ -120,7 +133,7 @@ use reconstruct_path to send commands to 'player' AI
 """
 
 
-"""
+
 
 def reconstruct_path(came_from, start, goal): #should display path
     current = goal
@@ -128,20 +141,20 @@ def reconstruct_path(came_from, start, goal): #should display path
     while current != start:
         path.append(current)
         current = came_from[current]
-    path.append(start) # optional
-    path.reverse() # optional
+    #path.append(start) # optional
+    #path.reverse() # optional
     return path
-draw_grid(myGrid, width = 2, path = reconstruct_path(came_from, start = (8,7), goal = (endx, endy)))
+
+draw_grid(myGrid, width = 2, path = reconstruct_path(parents, start = (8,5), goal=(17,10)))
 
 
-def get_path(grid, start, end): #same as reconstruct_path
-    came_from = bfs_grid(grid, start, end)
-    current = endspath = [end]
+def get_path(grid, start, goal): #same as reconstruct_path
+    came_from = bfs_grid(grid, start, goal)
+    current = endspath = [goal]
     while not current ==start:
         current = came_from[current]
         path.append(current)
     return path.reverse()
 
-
-
-"""
+get_path(parents, start = (8,5), goal=(17,2))
+#draw_grid(myGrid, width = 2, path = get_path(parents, start = (8,5), goal=(17,2)))

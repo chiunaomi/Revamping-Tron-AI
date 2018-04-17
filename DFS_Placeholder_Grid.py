@@ -8,7 +8,8 @@ def from_id_width(id, width):
 
 def draw_tile(graph, id, style, width):
     r = "."
-    if 'number' in style and id in style['number']: r = "%d" % style['number'][id]
+    if 'number' in style and id in style['number']:
+        r = "%d" % style['number'][id]
     if 'point_to' in style and style['point_to'].get(id, None) is not None:
         (x1, y1) = id
         (x2, y2) = style['point_to'][id]
@@ -20,6 +21,7 @@ def draw_tile(graph, id, style, width):
     if 'goal' in style and id == style['goal']: r = "Z"
     if 'path' in style and id in style['path']: r = "@"
     if id in graph.walls: r = "#" * width
+    #r = int(r)+1
     return r
 
 def draw_grid(graph, width=2, **style):
