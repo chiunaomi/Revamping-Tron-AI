@@ -6,6 +6,7 @@ Model updates the state of the game.
 import pygame
 from pygame.locals import*
 import time
+import os
 
 from player import Player
 from cell import Cell
@@ -75,12 +76,12 @@ class TronModel(object):
     def end_game(self,player,color):
         """Contains end game protocol and end game display."""
         black = (0, 0, 0)
-        myfont = pygame.font.SysFont("Britannic Bold", 50)
-        label1= myfont.render(player + "WINS!", 1, color)
-        label2 = myfont.render("Press Space to Restart", 1, (255,255,255))
+        font = pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'TRON.TTF'), 25)
+        label1= font.render(player + "WINS!", 1, color)
+        label2 = font.render("Press Space to Restart", 1, (255,255,255))
         self.screen.fill(black)
         self.screen.blit(label1,(185,100))
-        self.screen.blit(label2,(138,200))
+        self.screen.blit(label2,(43,200))
         pygame.display.flip()
         self.game_over = True
         self.player1.dir = "None"

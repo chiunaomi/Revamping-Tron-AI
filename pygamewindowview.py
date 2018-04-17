@@ -4,6 +4,7 @@ View displays the model's state in the PyGame window.
 """
 import pygame
 from pygame.locals import*
+import os
 import time
 from cell import Cell
 
@@ -17,12 +18,12 @@ class PyGameWindowView(object):
 
     def start_screen(self):
         black = (0,0,0)
-        myfont = pygame.font.SysFont("Britannic Bold", 50)
-        label1= myfont.render("Welcome to Tron Revamped", 1, (0, 150, 150))
-        label2 = myfont.render("Press Space to Start", 1, (0, 255, 0))
+        font = pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'TRON.TTF'), 25)
+        label1= font.render("Welcome to Tron Revamped", 1, (0, 150, 150))
+        label2 = font.render("Press Space to Start", 1, (0, 255, 0))
         self.model.screen.fill(black)
-        self.model.screen.blit(label1,(90,100))
-        self.model.screen.blit(label2,(150,200))
+        self.model.screen.blit(label1,(10,100))
+        self.model.screen.blit(label2,(60,200))
         pygame.display.flip()
 
     def _init_draw(self):

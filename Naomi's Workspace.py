@@ -5,6 +5,7 @@ Edits made here are transferred into individual files for final code.
 import pygame
 from pygame.locals import*
 import time
+import os
 
 class PyGameWindowView(object):
     """View object containing the visual elements of the game.
@@ -16,12 +17,12 @@ class PyGameWindowView(object):
 
     def start_screen(self):
         black = (0,0,0)
-        myfont = pygame.font.SysFont("Britannic Bold", 50)
+        myfont = pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'TRON.TTF'), 25)
         label1= myfont.render("Welcome to Tron Revamped", 1, (0, 150, 150))
         label2 = myfont.render("Press Space to Start", 1, (0, 255, 0))
         self.model.screen.fill(black)
-        self.model.screen.blit(label1,(90,100))
-        self.model.screen.blit(label2,(150,200))
+        self.model.screen.blit(label1,(10,100))
+        self.model.screen.blit(label2,(60,200))
         pygame.display.flip()
 
     def _init_draw(self):
@@ -39,7 +40,8 @@ class PyGameWindowView(object):
 
     def draw(self):
         """Draws the player paths and is updated and redrawn constantly"""
-        self.model._draw_players()
+        if not self.model.game_over:
+            self.model._draw_players()
         pygame.display.update()
 
 class TronModel(object):
@@ -84,9 +86,9 @@ class TronModel(object):
         self.player1.update()
         self.player2.update()
         if self.player1.crash():
-            self.end_game("GREEN ")
+            self.end_game("GREEN ",(0,250,0))
         if self.player2.crash():
-            self.end_game("ORANGE ")
+            self.end_game("ORANGE ",(255,140,0))
 
         last_seen_p1 = self.player1.current_cell
         last_seen_p2 = self.player2.current_cell
@@ -101,13 +103,20 @@ class TronModel(object):
         #added to the list of cells that have been hit
 
         if self.player1.current_cell in self.player_paths:
-            self.end_game("GREEN ")
+            self.end_game("GREEN ",(0,250,0))
         if self.player2.current_cell in self.player_paths:
-            self.end_game("ORANGE ")
+            self.end_game("ORANGE ",(255,140,0))
 
-    def end_game(self,player):
+    def end_game(self,player,color):
         """Contains end game protocol"""
-        pygame.display.set_caption(player + "WINS!")
+        black = (0, 0, 0)
+        font = pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'TRON.TTF'), 25)
+        label1= font.render(player + "WINS!", 1, color)
+        label2 = font.render("Press Space to Restart", 1, (255,255,255))
+        self.screen.fill(black)
+        self.screen.blit(label1,(185,100))
+        self.screen.blit(label2,(43,200))
+        pygame.display.flip()
         self.game_over = True
         self.player1.dir = "None"
         self.player2.dir = "None"

@@ -5,6 +5,7 @@ Main loop used to run our MVC.
 import pygame
 from pygame.locals import*
 import time
+import os
 
 from keycontrol import KeyControl
 from player import Player
