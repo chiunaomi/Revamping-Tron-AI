@@ -1,6 +1,6 @@
 """
 Controller class that takes player input and translates that to directions taken by the player objects.
-""""
+"""
 
 import pygame
 from pygame.locals import*
@@ -12,8 +12,6 @@ class KeyControl(object):
         self.model = model
 
     def handle_event(self, event):
-        if event.type == MOUSEBUTTONDOWN and self.model.end_start == False:
-            return True
         if event.type != KEYDOWN:
             return #if no keys were pressed it quits
         if event.key == pygame.K_LEFT and self.model.game_over != True:
@@ -42,5 +40,7 @@ class KeyControl(object):
             if self.model.player2.dir != "d":
                 self.model.player2.dir = "u"
 
+        if event.key == pygame.K_SPACE and self.model.end_start == False:
+            return True
         if event.key == pygame.K_SPACE and self.model.game_over == True:
             return True
