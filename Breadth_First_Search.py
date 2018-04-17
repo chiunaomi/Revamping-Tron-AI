@@ -93,7 +93,7 @@ tron model self.cell_lst
 
 
 
-def bfs_grid(graph, start):
+def bfs_grid(graph, start, goal):
     #actual alogrithm - send gird, gamestate, and player's location
     frontier = Queue()
     frontier.put(start)
@@ -102,16 +102,18 @@ def bfs_grid(graph, start):
 
     while not frontier.empty():
         current = frontier.get() #gets next 'frontier'(verticie) from the queue
+        if current == goal:
+            break
         for next in graph.neighbors(current):
             if next not in came_from:
                 frontier.put(next)
                 came_from[next] = True
     return came_from
 
-parents = bfs_grid(myGrid, (8,5))
+parents = bfs_grid(myGrid, (8,5), (17,2))
 #draw_grid(myGrid, width = 2, point_to = parents, start = (8,7))
 
-draw_grid(myGrid, width = 2, number = parents, start = (8,5))
+draw_grid(myGrid, width = 2, number = parents, start = (8,5), goal=(17,2))
 
 
 #compute endx, endy from search to determine longest dist

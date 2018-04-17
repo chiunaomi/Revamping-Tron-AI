@@ -21,6 +21,7 @@ def draw_tile(graph, id, style, width):
     if 'goal' in style and id == style['goal']: r = "Z"
     if 'path' in style and id in style['path']: r = "@"
     if id in graph.walls: r = "#" * width
+    #r = int(r)+1
     return r
 
 def draw_grid(graph, width=2, **style):
