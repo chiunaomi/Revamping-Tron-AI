@@ -1,7 +1,7 @@
 For a more detailed description of our project and process, click [here](details.md)
 
 # Creating a Tron AI
-`Revamping-Tron-AI` is a remake of the classic arcade game Tron with a few twists.
+`Revamping-Tron-AI` is a remake of the classic arcade game Tron with a few twists. Based off of the the sub-game Tron Light Cycles, the classic player vs. CPU gameplay is mirrored with the inclusion of additional players. 
 
 # Getting Started
 ## Installing Pygame
@@ -22,5 +22,5 @@ To play our game after the repository has been cloned, run the `main.py` file.
 ```
 
 # Attribution
-Game framework created by [Naomi Chiu](https://github.com/chiunaomi) and [Hadleigh Nunes](https://github.com/hadleigh-000).
+Original game framework created by [Naomi Chiu](https://github.com/chiunaomi) and [Hadleigh Nunes](https://github.com/hadleigh-000).
 Additional work to create AI done by [Naomi Chiu](https://github.com/chiunaomi), [Alex Frye](https://github.com/AlexFrye) and [Jessie Potter](https://github.com/JessiePotter).
