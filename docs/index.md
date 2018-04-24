@@ -4,14 +4,14 @@
 # Getting Started
 ## Installing Pygame
 In order to run 'Revamping-Tron-AI' and play our Tron game, you need to have 'pygame' installed. To install 'pygame' for python3, enter in the command window
-'''bash
+''' bash
 $ pip install pygame
 '''
 
 ## Obtaining the code
 To obtain the code to run 'Revamping-Tron-AI', the repository should be cloned.
 
-'''bash
+''' bash
 $ git clone https://github.com/chiunaomi/Revamping-Tron-AI.git
 '''
 
