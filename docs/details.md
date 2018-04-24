@@ -6,6 +6,9 @@
 * Show evolution of goals through AR architectural diagrams
 * Describe how feedback from the ARs was incorporated
 
+![System Architecture Diagram for AR2](Updated System Architecture Diagram and Goals.pdf)
+
+
 ## Implementation
 (to be added)
 * Updated architectural diagrams (inheritance and dependencies from each class to class)
