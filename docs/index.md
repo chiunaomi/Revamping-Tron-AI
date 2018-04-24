@@ -1,11 +1,9 @@
-#Creating an AI for the classic arcade game Tron
+# Creating an AI for the classic arcade game Tron
 
+# Getting Started
 
-#Getting Started
+## Installing Pygame
 
-##Installing Pygame
-
-##Obtaining the code
-
+## Obtaining the code
 
 For a more detailed description of our project, click [here](details.md)
