@@ -1,7 +1,7 @@
-For a more detailed description of our project and process, click [here](details.md)
+#### For a more detailed description of our project and process, click [here](details.md)
 
 # Creating a Tron AI
-`Revamping-Tron-AI` is a remake of the classic arcade game Tron with a few twists. Based off of the the sub-game Tron Light Cycles, the classic player vs. CPU gameplay is mirrored with the inclusion of additional players. 
+`Revamping-Tron-AI` is a remake of the classic arcade game Tron with a few twists. Based off of the the sub-game Tron Light Cycles, the classic player vs. CPU gameplay is mirrored with the inclusion of additional players.
 
 # Getting Started
 ## Installing Pygame

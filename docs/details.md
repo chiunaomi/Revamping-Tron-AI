@@ -7,7 +7,7 @@
 * Describe how feedback from the ARs was incorporated
 
 ![Screenshot of existing two-player Tron Lightbikes Game ](imgs/Existing_game.png)
-![Initial System Architecture Diagram](imgs/Initial_Arch_Diag.png)
+![Initial System Architecture Diagram](imgs/Initial_Arch_Diagram.png)
 ![Updated System Architecture Diagram for AR2](imgs/Updated_Arch_Diag.png)
 
 
