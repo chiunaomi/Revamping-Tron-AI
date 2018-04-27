@@ -6,7 +6,9 @@
 * Show evolution of goals through AR architectural diagrams
 * Describe how feedback from the ARs was incorporated
 
-![System Architecture Diagram for AR2](imgs/Updated System Architecture Diagram and Goals.pdf)
+![Screenshot of existing two-player Tron Lightbikes Game ](imgs/Existing_game.png)
+![Initial System Architecture Diagram](imgs/Initial_Arch_Diag.png)
+![Updated System Architecture Diagram for AR2](imgs/Updated_Arch_Diag.png)
 
 
 ## Implementation
