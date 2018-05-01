@@ -62,7 +62,7 @@ class TronModel(object):
         self.player2.update()
         #self.bot.update()
         self.bot.random_choice_move()
-        
+
 
 
         if self.player1.crash():
@@ -70,7 +70,7 @@ class TronModel(object):
         if self.player2.crash():
             self.end_game("ORANGE ",(255,140,0))
         if self.bot.crash():
-            self.end_game("ORANGE ",(255,140,0))
+            self.end_game("BLUE ",(0,0,255))
 
         last_seen_p1 = self.player1.current_cell
         last_seen_p2 = self.player2.current_cell
