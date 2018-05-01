@@ -22,14 +22,34 @@ class TronModel(object):
         self.cell_length = cell_length
         self.cell_lst = []
         self.player_paths = []
-        self.player1 = Player(self.screen,10,(self.width/2+100),(self.height/2),"r",(255,140,0))
-        self.player2 = Player(self.screen,10,(self.width/2-100),(self.height/2),"l",(0,250,0))
+        self.player_colors = ((255,140,0),(0,250,0),(0,150,150),(255,0,0))
         for i in range(self.height//cell_length):
             for j in range(self.width//cell_length):
                 self.cell_lst.append(Cell(self.screen,(i*self.cell_length,j*self.cell_length),cell_length))
         self.game_over = False
         self.end_start = False
         self.end_setup = False
+
+    def _init_players(self):
+        "Initiates number of players specified by user input"
+        if self.num_players == 1:
+            self.player1 = Player(self.screen,10,(self.width/2+100),(self.height/2),"r",self.player_colors[0])
+            self.players = ["player1"]
+        if self.num_players == 2:
+            self.player1 = Player(self.screen,10,(self.width/2+100),(self.height/2),"r",self.player_colors[0])
+            self.player2 = Player(self.screen,10,(self.width/2-100),(self.height/2),"l",self.player_colors[1])
+            self.players = ["player1","player2"]
+        if self.num_players == 3:
+            self.player1 = Player(self.screen,10,(self.width/2+100),(self.height/2-50),"r",self.player_colors[0])
+            self.player2 = Player(self.screen,10,(self.width/2-100),(self.height/2-50),"l",self.player_colors[1])
+            self.player3 = Player(self.screen,10,(self.width/2+100),(self.height/2+50),"r",self.player_colors[2])
+            self.players = ["player1","player2","player3"]
+        if self.num_players == 4:
+            self.player1 = Player(self.screen,10,(self.width/2+100),(self.height/2-50),"r",self.player_colors[0])
+            self.player2 = Player(self.screen,10,(self.width/2-100),(self.height/2-50),"l",self.player_colors[1])
+            self.player3 = Player(self.screen,10,(self.width/2+100),(self.height/2+50),"r",self.player_colors[2])
+            self.player4 = Player(self.screen,10,(self.width/2-100),(self.height/2+50),"l",self.player_colors[3])
+            self.players = ["player1","player2","player3","player4"]
 
     def _draw_players(self):
         """Calls the player objects' draw functions"""

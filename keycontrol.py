@@ -14,10 +14,25 @@ class KeyControl(object):
     def handle_setup(self, event):
         if event.type != MOUSEBUTTONDOWN:
             return
-        cursor = pygame.mouse.get_pos()
-
         if event.type == MOUSEBUTTONDOWN and self.model.end_setup == False:
-            return True
+            cursor = pygame.mouse.get_pos()
+            if cursor[1] > 250 and cursor[1] < 300:
+                if cursor[0] > 55 and cursor[0] < 105:
+                    self.model.num_players = 1
+                    print(self.model.num_players)
+                    return True
+                if cursor[0] > 215 and cursor[0] < 265:
+                    self.model.num_players = 2
+                    print(self.model.num_players)
+                    return True
+                if cursor[0] > 375 and cursor[0] < 435:
+                    self.model.num_players = 3
+                    print(self.model.num_players)
+                    return True
+                if cursor[0] > 535 and cursor[0] < 585:
+                    self.model.num_players = 4
+                    print(self.model.num_players)
+                    return True
 
     def handle_event(self, event):
         if event.type != KEYDOWN:
