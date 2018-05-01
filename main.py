@@ -11,7 +11,7 @@ from keycontrol import KeyControl
 from player import Player
 from cell import Cell
 from pygamewindowview import PyGameWindowView
-from tronmodel import TronModel
+from tronmodel_bot import TronModel
 
 if __name__ == '__main__':
 

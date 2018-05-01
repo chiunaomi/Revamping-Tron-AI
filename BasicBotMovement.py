@@ -5,14 +5,18 @@ class BasicBot(Player):
     def __init__(self, draw_screen, dimension, start_posx, start_posy, direction, color=(255,255,255)):
         Player.__init__(self, draw_screen, dimension, start_posx, start_posy, direction, color=(255,255,255))
 
-    def random_choice(self):
-        possible_directions = range(4)
-        directions= {"r", "l", "u", "d"}
-        safe = possible_directions[:]
-        head = TronModel.in_cell(self)
+    def random_choice_move(self):
+    #def update(self):
+        directions = ["r", "l", "u", "d"]
+        safe = directions
+        #head = TronModel.in_cell(self)
+        self.px = 0
+        self.py = 0
+        #print(px,py)
 
 
-        for d in possible_directions:
+
+        for d in range(4):
             self.dir = directions[d]
             if self.dir == "r":
                 self.vx = 10
@@ -29,14 +33,29 @@ class BasicBot(Player):
             self.x += self.vx
             self.y += self.vy
             possible_head = Rect(self.x, self.y, 10, 10)
-            if self.crash or self.end_game:
-                safe_directions.remove(direction)
+            #print(px,py)
+            if self.crash(possible_head) or self.end_game(possible_head):
+                safe.remove(self.dir)
 
-        if self.direction not in safe_directions and safe_directions != []:
-            self.direction = random.choice(safe_directions)
+        if self.dir not in safe and safe != []:
+            self.dir = random.choice(safe)
+            if self.dir == "r":
+                self.vx = 10
+                self.vy = 0
+            elif self.dir == "l":
+                self.vx = -10
+                self.vy = 0
+            elif self.dir == "u":
+                self.vx = 0
+                self.vy = -10
+            elif self.dir == "d":
+                self.vx = 0
+                self.vy = 10
+            self.x += self.vx
+            self.y += self.vy
 
         self.move()
-
+"""
 class Heuristic(self):
     def simple_heuristic(self):
         player_safe_count = random_choice(self)
@@ -48,13 +67,13 @@ class Heuristic(self):
         return (4 - player_safe_count) / 3.0
 
 class MinimaxBot(Player):
-    """ This bot uses the well-known Minimax algorithm for its strategy,
+     This bot uses the well-known Minimax algorithm for its strategy,
     along with alpha-beta pruning to remove suboptimal branches.
     We use the following heuristic function to evaluate states:
     <To be done>
     For the leaves of the game tree, we consider win states to be 1
     and losses to be -1.
-    """
+
 
     def __init__(self, color, player_num, pruning=True, depth=1, heuristic=0):
         BasicBot(self, draw_screen, dimension, start_posx, start_posy, direction, color=(255,255,255))
@@ -143,3 +162,4 @@ class MinimaxBot(Player):
     #        if max_score == 1:
     #            return 1
     #    return max_score
+"""
