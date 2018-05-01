@@ -15,15 +15,22 @@ class PyGameWindowView(object):
         self.model = model
         size = (width,height)
         self.model.screen = pygame.display.set_mode(size)
+        self.font = pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'TRON.TTF'), 25)
 
     def start_screen(self):
         black = (0,0,0)
-        font = pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'TRON.TTF'), 25)
-        label1= font.render("Welcome to Tron Revamped", 1, (0, 150, 150))
-        label2 = font.render("Press Space to Start", 1, (0, 255, 0))
+        label1= self.font.render("Welcome to Tron Revamped", 1, (0, 150, 150))
+        label2 = self.font.render("Press Space to Start", 1, (0, 255, 0))
         self.model.screen.fill(black)
         self.model.screen.blit(label1,(10,100))
         self.model.screen.blit(label2,(60,200))
+        pygame.display.flip()
+
+    def setup_screen(self):
+        black = (0,0,0)
+        label = self.font.render("Number of Players", 1, (0, 150, 150))
+        self.model.screen.fill(black)
+        self.model.screen.blit(label,(10,100))
         pygame.display.flip()
 
     def _init_draw(self):

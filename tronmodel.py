@@ -29,6 +29,7 @@ class TronModel(object):
                 self.cell_lst.append(Cell(self.screen,(i*self.cell_length,j*self.cell_length),cell_length))
         self.game_over = False
         self.end_start = False
+        self.end_setup = False
 
     def _draw_players(self):
         """Calls the player objects' draw functions"""
