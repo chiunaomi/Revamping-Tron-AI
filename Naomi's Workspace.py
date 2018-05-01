@@ -25,6 +25,12 @@ class PyGameWindowView(object):
         self.model.screen.blit(label2,(60,200))
         pygame.display.flip()
 
+    def setup_screen(self):
+        black = (0,0,0)
+        font = pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'TRON.TTF'),25)
+        self.model.screen.fill(black)
+        pygame.display.flip()
+
     def _init_draw(self):
         """Draws the grid on the screen and is only called at the beginning of a game."""
         self.model.screen.fill((105,105,105))
@@ -46,7 +52,7 @@ class PyGameWindowView(object):
 
 class TronModel(object):
     """Model object containing the players, the game state, all cells, and the cells that have been hit."""
-    def __init__(self,cell_length,width,height):
+    def __init__(self,cell_length,width,height,number):
         pygame.init()
         size = (width,height)
         self.screen = pygame.display.set_mode(size)
@@ -246,10 +252,12 @@ if __name__ == '__main__':
                     if event.type == QUIT: #if the window is closed, break out of the two while loops and go to pygame.quit()
                         running = False
                         end_start = True
+                        end_setup = True
                         game_over = True
                     if controller.handle_event(event):
                         model.end_start = True
                         end_start = True
+
             view._init_draw()
 
             while not game_over:

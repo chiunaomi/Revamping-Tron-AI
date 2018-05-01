@@ -11,6 +11,14 @@ class KeyControl(object):
     def __init__(self, model):
         self.model = model
 
+    def handle_setup(self, event):
+        if event.type != MOUSEBUTTONDOWN:
+            return
+        cursor = pygame.mouse.get_pos()
+
+        if event.type == MOUSEBUTTONDOWN and self.model.end_setup == False:
+            return True
+
     def handle_event(self, event):
         if event.type != KEYDOWN:
             return #if no keys were pressed it quits
@@ -27,7 +35,7 @@ class KeyControl(object):
             if self.model.player1.dir != "d":
                 self.model.player1.dir = "u"
 
-        if event.key ==pygame.K_a and self.model.game_over != True:
+        if event.key == pygame.K_a and self.model.game_over != True:
             if self.model.player2.dir != "r":
                 self.model.player2.dir = "l"
         if event.key == pygame.K_d and self.model.game_over != True:

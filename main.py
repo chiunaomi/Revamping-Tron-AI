@@ -26,6 +26,7 @@ if __name__ == '__main__':
             view = PyGameWindowView(model,640,480)
             controller = KeyControl(model)
             end_start = False
+            end_setup = False
             game_over = False
 
             while not end_start:
@@ -38,6 +39,18 @@ if __name__ == '__main__':
                     if controller.handle_event(event):
                         model.end_start = True
                         end_start = True
+
+            while not end_setup:
+                view.setup_screen()
+                for event in pygame.event.get():
+                    if event.type == QUIT:
+                        running = False
+                        end_setup = True
+                        game_over = True
+                    if controller.handle_setup(event):
+                        model.end_setup = True
+                        end_setup = True
+
             view._init_draw()
 
             while not game_over:
