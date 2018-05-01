@@ -11,7 +11,7 @@ from keycontrol import KeyControl
 from player import Player
 from cell import Cell
 from pygamewindowview import PyGameWindowView
-from tronmodel_bot import TronModel
+from tronmodel import TronModel
 
 if __name__ == '__main__':
 
@@ -48,6 +48,7 @@ if __name__ == '__main__':
                         end_setup = True
                         game_over = True
                     if controller.handle_setup(event):
+                        model.init_players()
                         model.end_setup = True
                         end_setup = True
 

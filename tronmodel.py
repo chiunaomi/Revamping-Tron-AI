@@ -30,31 +30,31 @@ class TronModel(object):
         self.end_start = False
         self.end_setup = False
 
-    def _init_players(self):
+    def init_players(self):
         "Initiates number of players specified by user input"
         if self.num_players == 1:
             self.player1 = Player(self.screen,10,(self.width/2+100),(self.height/2),"r",self.player_colors[0])
-            self.players = ["player1"]
+            self.players = [self.player1]
         if self.num_players == 2:
             self.player1 = Player(self.screen,10,(self.width/2+100),(self.height/2),"r",self.player_colors[0])
             self.player2 = Player(self.screen,10,(self.width/2-100),(self.height/2),"l",self.player_colors[1])
-            self.players = ["player1","player2"]
+            self.players = [self.player1,self.player2]
         if self.num_players == 3:
             self.player1 = Player(self.screen,10,(self.width/2+100),(self.height/2-50),"r",self.player_colors[0])
             self.player2 = Player(self.screen,10,(self.width/2-100),(self.height/2-50),"l",self.player_colors[1])
             self.player3 = Player(self.screen,10,(self.width/2+100),(self.height/2+50),"r",self.player_colors[2])
-            self.players = ["player1","player2","player3"]
+            self.players = [self.player1,self.player2,self.player3]
         if self.num_players == 4:
             self.player1 = Player(self.screen,10,(self.width/2+100),(self.height/2-50),"r",self.player_colors[0])
             self.player2 = Player(self.screen,10,(self.width/2-100),(self.height/2-50),"l",self.player_colors[1])
             self.player3 = Player(self.screen,10,(self.width/2+100),(self.height/2+50),"r",self.player_colors[2])
             self.player4 = Player(self.screen,10,(self.width/2-100),(self.height/2+50),"l",self.player_colors[3])
-            self.players = ["player1","player2","player3","player4"]
+            self.players = [self.player1,self.player2,self.player3,self.player4]
 
     def _draw_players(self):
         """Calls the player objects' draw functions"""
-        self.player1.draw()
-        self.player2.draw()
+        for player in self.players:
+            player.draw()
 
     def in_cell(self):
         """Loops through cell_lst to find the cell whose xrange contains player.x
@@ -70,8 +70,8 @@ class TronModel(object):
 
     def update(self):
         """Checks for new inputs and updates the game model."""
-        self.player1.update()
-        self.player2.update()
+        for player in self.players:
+            player.update()
         if self.player1.crash():
             self.end_game("GREEN ",(0,250,0))
         if self.player2.crash():
