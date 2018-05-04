@@ -1,11 +1,15 @@
 from player import*
-from tronmodel import*
-
+from tronmodel_bot import*
+#argument that takes the position of the other player and takes it into consideration
+#input single numbers into the functions as much as possible
+#do the end game work in the model class
+#self.player2.x for example as an argument
+#abstract end game and crash from player and tronmodel as much as possible
 class BasicBot(Player):
     def __init__(self, draw_screen, dimension, start_posx, start_posy, direction, color=(255,255,255)):
         Player.__init__(self, draw_screen, dimension, start_posx, start_posy, direction, color=(255,255,255))
 
-    def random_choice_move(self):
+    def random_choice_move(self, screen_height, screen_width):
     #def update(self):
         directions = ["r", "l", "u", "d"]
         safe = directions
@@ -34,7 +38,7 @@ class BasicBot(Player):
             self.y += self.vy
             possible_head = Rect(self.x, self.y, 10, 10)
             #print(px,py)
-            if self.crash(possible_head) or self.end_game(possible_head):
+            if self.has_collided(self, other_player, possible_head, screen_width, screen_height): #or, then a function that checks whether the players have crashed
                 safe.remove(self.dir)
 
         if self.dir not in safe and safe != []:
@@ -55,10 +59,29 @@ class BasicBot(Player):
             self.y += self.vy
 
         self.move()
+    def has_collided(self, other_player, head = None, screen_width, screen_height):
+        #figure out how to call the player paths from model, and call its own
+        segments_to_check = TronModel.update.self.player_paths()
+        head_loc = head.topleft
+        return (not (0 <= head_loc[0] <= screen_width - 10) or
+                not (0 <= head_loc[1] <= screen_height - 10) or
+                head.collidelist(segments_to_check) != -1 or
+                head.collidelist(other_player) != -1)
+                #the above needs the input that checks the other players path from model
+    def move(self):
+        #need to grab current position below*** should try to grab it as a rect?
+        #Just need top left into to implement though
+        head_loc =
+        delta = #state direction here
+        new_x = head_loc[0] + delta['x'] * 10 #basially delta x should be either 0, 1, -1
+        new_y = head_loc[1] + delta['y'] * 10 #delta y should be either 0, 1, -1
+        newhead = Rect(new_x, new_y, 10, 10)
+        self.player_path.insert(0, newhead)
+        #the above code
 """
 class Heuristic(self):
     def simple_heuristic(self):
-        player_safe_count = random_choice(self)
+        player_safe_count = BasicBot.random_choice_move(self)
         player_safe_count = len(player_safe_count)
         if player_safe_count == 0:
             return -1
