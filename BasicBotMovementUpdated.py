@@ -116,11 +116,11 @@ class MinimaxBot(Player):
                 return -1
             else:
                 return 1
-        #if (turn == OPPONENT):
+        #if (turn == 0):
         #    if opponent_lost:
-        #        return WIN
+        #        return 1
         #    if player_lost:
-        #        return LOSE
+        #        return -1
 
         if self.heuristic == 0:
             return Heuristic.simple_heuristic(self)
@@ -137,8 +137,8 @@ class MinimaxBot(Player):
         random.shuffle(moves)
         max_score = -1
         for move in moves:
-            if not self.direction_valid(move):
-                continue
+            #if not self.direction_valid(move):
+            #    continue
             scores[move] = self.min_play(self.clone(direction=move), depth+1, max_score, 1)
             max_score = max(max_score, scores[move])
             if self.pruning and max_score >= 1:
