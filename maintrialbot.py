@@ -12,7 +12,7 @@ from player import Player
 from cell import Cell
 from pygamewindowview import PyGameWindowView
 from tronmodelbot import TronModel
-
+from BasicBotMovementUp import BasicBot
 if __name__ == '__main__':
 
     def main_loop():
