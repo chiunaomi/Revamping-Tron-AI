@@ -1,6 +1,6 @@
 # Detailed Project Description
 #### [Return to the project overview](index.md)
-## Story (Project Evolution/Narrative)
+## Project Narrative and Evolution
 
 Our initial project goal was to learn about simple game-playing AI through designing and implementing a 'CPU' type player in a preexisting build of Tron Light Bikes created by one of our team's members in a previous project:
 
@@ -23,13 +23,8 @@ As we began to delve into creating an AI (machine learning had been abandoned du
 
 Our feedback from the second architectural review supported a narrowing of our previous goals to implement only an AI, as progress was slow and our deadline approached quickly. Since our reviewers had little experience with developing AI algorithms, we instead discussed the potential behaviors of our AI. The general consensus was that a defensive bot would probably be easier to begin with, as an aggressive bot would also need to predict the players’ next moves. However, many did think that once the minimax was refined it would be interesting to also attempt a more aggressive bot.
 
+Our project employs the well-known Minimax algorithm described in greater detail below.
 
-* Add final architectural diagram
-* Finish when game is done
-
-* Description of our motivations, goals, and game background
-* Show evolution of goals through AR architectural diagrams
-* Describe how feedback from the ARs was incorporated
 
 
 
