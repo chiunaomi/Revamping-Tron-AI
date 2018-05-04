@@ -71,8 +71,15 @@ class BasicBot(Player):
     def move(self):
         #need to grab current position below*** should try to grab it as a rect?
         #Just need top left into to implement though
-        head_loc =
-        delta = #state direction here
+        head_loc = Rect(self.x, self.y, 10, 10)
+        if self.dir = "u":
+            delta = {'x': 0, 'y':-1}
+        elif self.dir = "d":
+            delta = {'x':0, 'y':1}
+        elif self.dir = "r":
+            delta = {'x': 1, 'y':0}
+        elif self.dir = "l":
+            delta = {'x': -1, 'y':0}
         new_x = head_loc[0] + delta['x'] * 10 #basially delta x should be either 0, 1, -1
         new_y = head_loc[1] + delta['y'] * 10 #delta y should be either 0, 1, -1
         newhead = Rect(new_x, new_y, 10, 10)
@@ -108,7 +115,7 @@ class MinimaxBot(Player):
         self.set_direction(self.minimax(other_player, 0))
         self.move()
 
-    def evaluate_board(self, player, turn):
+    def evaluate_board(self, player, opponent, turn):
         player_lost = Player.crash(self) or Tronmodel.end_game(self)
         #opponent_lost = opponent.has_collided(player)
         if (turn == 1):
@@ -116,7 +123,7 @@ class MinimaxBot(Player):
                 return -1
             else:
                 return 1
-        #if (turn == 0):
+        #if (turn == 2):
         #    if opponent_lost:
         #        return 1
         #    if player_lost:
@@ -150,7 +157,7 @@ class MinimaxBot(Player):
         return scores.index(max(scores)) # Move with highest score
 
     #def min_play(self, player, opponent, depth, alpha, beta):
-    #    outcome = self.evaluate_board(player, opponent, OPPONENT)
+    #    outcome = self.evaluate_board(player, opponent, 2)
     #    if outcome == 1 or outcome == -1 or depth == self.max_depth:
     #        return outcome
     #    min_score = 1
@@ -168,7 +175,7 @@ class MinimaxBot(Player):
     #    return min_score
 
     #def max_play(self, player, opponent, depth, alpha, beta):
-    #    outcome = self.evaluate_board(player, opponent, FRIENDLY)
+    #    outcome = self.evaluate_board(player, opponent, 1)
     #    if outcome == 1 or outcome == -1 or depth == self.max_depth:
     #        return outcome
     #
