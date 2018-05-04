@@ -7,7 +7,7 @@ import time
 
 class Player(object):
     """Contains player's location, direction and speed, as well as their color"""
-    def __init__(self, draw_screen, dimension, start_posx, start_posy, direction, color=(255,255,255)):
+    def __init__(self, draw_screen, dimension, start_posx, start_posy, direction, color_name, color=(255,255,255)):
         self.draw_screen = draw_screen
         self.width = dimension
         self.height = dimension
@@ -17,7 +17,10 @@ class Player(object):
         self.vy = 0
         self.dir = direction
         self.color = color
+        self.name = color_name
+        self.last_seen = None
         self.current_cell = None
+        self.alive = True
 
     def draw(self):
         line_width = .5
@@ -48,7 +51,11 @@ class Player(object):
         """Determines what happens if a player runs of the screen.
         Used by the model to check if a player has lost."""
         if self.x == 640 or self.x == -10:
+            self.alive = False
+            self.dir = None
             return True
         if self.y == -10 or self.y == 480:
+            self.alive = False
+            self.dir = None
             return True
         return False

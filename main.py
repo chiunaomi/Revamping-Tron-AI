@@ -35,6 +35,7 @@ if __name__ == '__main__':
                     if event.type == QUIT: #if the window is closed, break out of the two while loops and go to pygame.quit()
                         running = False
                         end_start = True
+                        end_setup = True
                         game_over = True
                     if controller.handle_event(event):
                         model.end_start = True
