@@ -1,15 +1,16 @@
 from player import*
-from tronmodel_bot import*
+from tronmodelbot import*
+import random
 #argument that takes the position of the other player and takes it into consideration
 #input single numbers into the functions as much as possible
 #do the end game work in the model class
 #self.player2.x for example as an argument
 #abstract end game and crash from player and tronmodel as much as possible
 class BasicBot(Player):
-    def __init__(self, draw_screen, dimension, start_posx, start_posy, direction, color=(255,255,255)):
-        Player.__init__(self, draw_screen, dimension, start_posx, start_posy, direction, color=(255,255,255))
-
-    def random_choice_move(self, screen_height, screen_width):
+    def __init__(self, draw_screen, dimension, start_posx, start_posy, direction, color_name, color=(255,255,255)) :
+        Player.__init__(self, draw_screen, dimension, start_posx, start_posy, direction, color_name, color=(255,255,255))
+        #reset it so the model outputs a new list and sends the list each time to the AI
+    def random_choice_move(self,cell_lst):
     #def update(self):
         directions = ["r", "l", "u", "d"]
         safe = directions
@@ -34,11 +35,11 @@ class BasicBot(Player):
             elif self.dir == "d":
                 self.vx = 0
                 self.vy = 10
-            self.x += self.vx
-            self.y += self.vy
-            possible_head = Rect(self.x, self.y, 10, 10)
+            self.px += self.vx
+            self.py += self.vy
+            possible_head = Rect(self.px, self.py, 10, 10)
             #print(px,py)
-            if self.has_collided(self, other_player, possible_head, screen_width, screen_height): #or, then a function that checks whether the players have crashed
+            if self.has_collided(cell_lst, possible_head) == True: #or, then a function that checks whether the players have crashed
                 safe.remove(self.dir)
 
         if self.dir not in safe and safe != []:
@@ -58,33 +59,38 @@ class BasicBot(Player):
             self.x += self.vx
             self.y += self.vy
 
-        self.move()
-    def has_collided(self, other_player, head = None, screen_width, screen_height):
+        #self.move()
+        choices = len(safe)
+        choose = random.randint(0, choices - 1)
+        self.dir = safe[choose]
+        self.update()
+
+    def has_collided(self, cell_lst, head = None):
         #figure out how to call the player paths from model, and call its own
-        segments_to_check = TronModel.update.self.player_paths()
+        segments_to_check = cell_lst
         head_loc = head.topleft
-        return (not (0 <= head_loc[0] <= screen_width - 10) or
-                not (0 <= head_loc[1] <= screen_height - 10) or
-                head.collidelist(segments_to_check) != -1 or
-                head.collidelist(other_player) != -1)
+        if head_loc in cell_lst:
+            return True
+            #(head.collidelist(segments_to_check) != -1)
                 #the above needs the input that checks the other players path from model
-    def move(self):
+    #def move(self):
         #need to grab current position below*** should try to grab it as a rect?
         #Just need top left into to implement though
-        head_loc = Rect(self.x, self.y, 10, 10)
-        if self.dir = "u":
-            delta = {'x': 0, 'y':-1}
-        elif self.dir = "d":
-            delta = {'x':0, 'y':1}
-        elif self.dir = "r":
-            delta = {'x': 1, 'y':0}
-        elif self.dir = "l":
-            delta = {'x': -1, 'y':0}
-        new_x = head_loc[0] + delta['x'] * 10 #basially delta x should be either 0, 1, -1
-        new_y = head_loc[1] + delta['y'] * 10 #delta y should be either 0, 1, -1
-        newhead = Rect(new_x, new_y, 10, 10)
-        self.player_path.insert(0, newhead)
+    #    head_loc = Rect(self.x, self.y, 10, 10)
+    #    if self.dir = "u":
+    #        delta = {'x': 0, 'y':-1}
+    #    elif self.dir = "d":
+    #        delta = {'x':0, 'y':1}
+    #    elif self.dir = "r":
+    #        delta = {'x': 1, 'y':0}
+    #    elif self.dir = "l":
+    #        delta = {'x': -1, 'y':0}
+    #    new_x = head_loc[0] + delta['x'] * 10 #basially delta x should be either 0, 1, -1
+    #    new_y = head_loc[1] + delta['y'] * 10 #delta y should be either 0, 1, -1
+    #    newhead = Rect(new_x, new_y, 10, 10)
+
         #the above code
+        #Add to the list of cell positions
 """
 class Heuristic(self):
     def simple_heuristic(self):
