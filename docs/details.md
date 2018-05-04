@@ -29,12 +29,12 @@ Our project employs the well-known MiniMax algorithm described in greater detail
 
 
 ## Implementation
-Our project employs one of the most basic AI algorithims, MiniMax. At its core, MiniMax attempts to determine the best decisions or moves for a player based analyzing several possible moves and its opponent's response, to a pre defined depth (number of moves), with the assumption that an opponent will always attempt to put itself in the best possible position for each move (eg. not sacrificing the appearance of success in the near-game as a long-term strategy). In its most basic implementation, moves with a successful outcome are given a positive score while harmful or losing moves are given a negative score. For each level of depth search, unsuccessful 'branches'(possible moves or sets of moves) or branches that prove to be worse than a previously examined move will be 'pruned' from the main search tree in a process known as Alpha-Beta Pruning. MiniMax then returns the set of moves with the greatest score.
+Our project employs one of the most basic AI algorithms, MiniMax. At its core, MiniMax attempts to determine the best decisions or moves for a player based analyzing several possible moves and its opponent's response, to a pre defined depth (number of moves), with the assumption that an opponent will always attempt to put itself in the best possible position for each move (eg. not sacrificing the appearance of success in the near-game as a long-term strategy). In its most basic implementation, moves with a successful outcome are given a positive score while harmful or losing moves are given a negative score. For each level of depth search, unsuccessful 'branches'(possible moves or sets of moves) or branches that prove to be worse than a previously examined move will be 'pruned' from the main search tree in a process known as Alpha-Beta Pruning. MiniMax then returns the set of moves with the greatest score.
 
 The below image depicts how a MiniMax AI will tree search all the possible moves and responses in a tic tac toe game. The branch with the greatest final score is returned.
 ![Tic Tac Toe MiniMax](imgs/full-minimax-move-tree.png)
 
-MiniMax performance can be improved with custom heuristics, such as weighting near-game moves more heavily, since the long-game is uncertain. 
+MiniMax performance can be improved with custom heuristics, such as weighting near-game moves more heavily, since the long-game is uncertain.
 
 * Updated architectural diagrams (inheritance and dependencies from each class to class)
 * Description of AI MiniMax Flood fill
