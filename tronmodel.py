@@ -99,7 +99,6 @@ class TronModel(object):
         #added to the list of cells that have been hit
             if player.current_cell in self.player_paths:
                 self.players.remove(player)
-                print(self.players)
                 player.alive = False
         if len(self.players) == 1:
             self.end_game(self.players[0].name,self.players[0].color)

@@ -46,16 +46,3 @@ class Player(object):
             self.vy = 0
         self.x += self.vx
         self.y += self.vy
-
-    def crash(self):
-        """Determines what happens if a player runs of the screen.
-        Used by the model to check if a player has lost."""
-        if self.x == 640 or self.x == -10:
-            self.alive = False
-            self.dir = None
-            return True
-        if self.y == -10 or self.y == 480:
-            self.alive = False
-            self.dir = None
-            return True
-        return False
