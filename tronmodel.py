@@ -22,11 +22,26 @@ class TronModel(object):
         self.cell_length = cell_length
         self.cell_lst = set()
         self.player_paths = set()
+        for i in range(self.width//cell_length):
+            for j in range(self.height//cell_length):
+                cell = Cell(self.screen,(i*self.cell_length,j*self.cell_length),cell_length)
+                self.cell_lst.add((cell.xrange,cell.yrange))
+        for i in range(self.height//cell_length):
+            cell = Cell(self.screen,(-10,i*self.cell_length),cell_length)
+            self.cell_lst.add((cell.xrange,cell.yrange))
+            self.player_paths.add((cell.xrange,cell.yrange))
+            cell = Cell(self.screen,(self.width,i*self.cell_length),cell_length)
+            self.cell_lst.add((cell.xrange,cell.yrange))
+            self.player_paths.add((cell.xrange,cell.yrange))
+        for j in range(self.width//cell_length):
+            cell = Cell(self.screen,(j*self.cell_length,-10),cell_length)
+            self.cell_lst.add((cell.xrange,cell.yrange))
+            self.player_paths.add((cell.xrange,cell.yrange))
+            cell = Cell(self.screen,(j*self.cell_length,self.height),cell_length)
+            self.cell_lst.add((cell.xrange,cell.yrange))
+            self.player_paths.add((cell.xrange,cell.yrange))
         self.player_colors = [(255,140,0),(0,250,0),(0,150,150),(255,0,0)]
         self.color_strings = ["Orange","Green","Blue","Red"]
-        for i in range(self.height//cell_length):
-            for j in range(self.width//cell_length):
-                self.cell_lst.add(Cell(self.screen,(i*self.cell_length,j*self.cell_length),cell_length))
         self.game_over = False
         self.end_start = False
         self.end_setup = False
@@ -66,15 +81,13 @@ class TronModel(object):
         and whose yrange contains player.y, and sets the player location to be within that cell."""
         for player in self.players:
             for cell in self.cell_lst:
-                if player.x in cell.xrange and player.y in cell.yrange:
+                if player.x in cell[0] and player.y in cell[1]:
                     player.current_cell = cell
                     break
 
     def update(self):
         """Checks for new inputs and updates the game model."""
-        player_num = 0
         for player in self.players:
-            player_num += 1
             player.update()
             player.last_seen = player.current_cell
 
@@ -102,5 +115,5 @@ class TronModel(object):
         self.screen.blit(label2,(43,200))
         pygame.display.flip()
         self.game_over = True
-        self.player1.dir = "None"
-        self.player2.dir = "None"
+        for player in self.players:
+            player.dir = "None"
