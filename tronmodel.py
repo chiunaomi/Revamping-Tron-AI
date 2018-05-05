@@ -43,33 +43,32 @@ class TronModel(object):
         self.player_colors = [(255,140,0),(0,250,0),(0,150,150),(255,0,0)]
         self.color_strings = ["Orange","Green","Blue","Red"]
         self.game_over = False
-        self.end_start = False
-        self.end_setup = False
+        self.mode = None
 
     def init_players(self):
         "Initiates number of players specified by user input"
         if self.num_players == 1:
             self.player1 = Player(self.screen,10,(self.width/2-100),(self.height/2),"l",self.color_strings[0],self.player_colors[0])
             self.players = [self.player1]
-            print(self.players)
         if self.num_players == 2:
             self.player1 = Player(self.screen,10,(self.width/2-100),(self.height/2),"l",self.color_strings[0],self.player_colors[0])
             self.player2 = Player(self.screen,10,(self.width/2+100),(self.height/2),"r",self.color_strings[1],self.player_colors[1])
             self.players = [self.player1,self.player2]
-            print(self.players)
         if self.num_players == 3:
             self.player1 = Player(self.screen,10,(self.width/2-100),(self.height/2-50),"l",self.color_strings[0],self.player_colors[0])
             self.player2 = Player(self.screen,10,(self.width/2+100),(self.height/2-50),"r",self.color_strings[1],self.player_colors[1])
             self.player3 = Player(self.screen,10,(self.width/2-100),(self.height/2+50),"l",self.color_strings[2],self.player_colors[2])
             self.players = [self.player1,self.player2,self.player3]
-            print(self.players)
         if self.num_players == 4:
             self.player1 = Player(self.screen,10,(self.width/2-100),(self.height/2-50),"l",self.color_strings[0],self.player_colors[0])
             self.player2 = Player(self.screen,10,(self.width/2+100),(self.height/2-50),"r",self.color_strings[1],self.player_colors[1])
             self.player3 = Player(self.screen,10,(self.width/2-100),(self.height/2+50),"l",self.color_strings[2],self.player_colors[2])
             self.player4 = Player(self.screen,10,(self.width/2+100),(self.height/2+50),"r",self.color_strings[3],self.player_colors[3])
             self.players = [self.player1,self.player2,self.player3,self.player4]
-            print(self.players)
+        if self.num_CPU == 1:
+            print(1)
+        if self.num_CPU == 2:
+            print(2)
 
     def _draw_players(self):
         """Calls the player objects' draw functions"""
