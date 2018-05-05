@@ -78,6 +78,7 @@ if __name__ == '__main__':
                                 running = False
                                 end_player_setup = True
                                 end_multi1 = True
+                                end_multi2 = True
                                 game_over = True
                             if controller.handle_multi1(event):
                                 controller.end_multi1 = True

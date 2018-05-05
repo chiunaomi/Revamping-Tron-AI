@@ -44,9 +44,12 @@ class TronModel(object):
         self.color_strings = ["Orange","Green","Blue","Red"]
         self.game_over = False
         self.mode = None
+        self.num_players = None
 
     def init_players(self):
         "Initiates number of players specified by user input"
+        if self.num_players == None:
+            return
         if self.num_players == 1:
             self.player1 = Player(self.screen,10,(self.width/2-100),(self.height/2),"l",self.color_strings[0],self.player_colors[0])
             self.players = [self.player1]
