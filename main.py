@@ -68,6 +68,9 @@ if __name__ == '__main__':
                             model.init_players()
                             controller.end_player_setup = True
                             end_player_setup = True
+                            view.display_controls()
+                            time.sleep(5)
+                            view._init_draw()
                 if model.mode == "multi":
                     end_multi1 = False
                     while not end_multi1:
@@ -99,11 +102,12 @@ if __name__ == '__main__':
                                 end_multi2 = True
                     model.init_players()
                     end_player_setup = True
-            view.display_controls()
-            time.sleep(5)
-            view._init_draw()
+                    view.display_controls()
+                    time.sleep(5)
+                    view._init_draw()
+
+            pygame.display.flip()
             controller.game_start = True
-            time.sleep(1)
             while not game_over:
                 for event in pygame.event.get():
                     if event.type == QUIT: #if the window is closed, break out of the two while loops and go to pygame.quit()
