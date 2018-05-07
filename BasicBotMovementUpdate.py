@@ -12,13 +12,13 @@ class BasicBot(Player):
         #reset it so the model outputs a new list and sends the list each time to the AI
         self.model = model
         self.cell = None
-        self.direction = "r"
+        self.direction1 = "r"
 
     def random_choice_move(self):
     #def update(self):
         directions = ["r", "l", "u", "d"]
         safe = ["r", "l", "u", "d"]
-        print("lenSafe = ",len(safe))
+        #print("lenSafe = ",len(safe))
         #head = TronModel.in_cell(self)
         self.px = self.x
         self.py = self.y
@@ -28,7 +28,7 @@ class BasicBot(Player):
         for d in range(4):
 
             direction = directions[d]
-            print ("rand_Dir = " + direction)
+            #print ("rand_Dir = " + direction)
             if direction == "r":
                 self.vx = 10
                 self.vy = 0
@@ -45,30 +45,31 @@ class BasicBot(Player):
             self.py += self.vy
             #possible_head = ([(self.px, self.py)]) #list
             possible_head = Rect(self.px, self.py, 10, 10) #tuple
-            print(possible_head)
-            print(self.px,self.py)
+            #print(possible_head)
+            #print(self.px,self.py)
             #safe.remove(self.prev_dir)
             if self.has_collided(possible_head): #or, then a function that checks whether the players have crashed
                 #print("hello there")
                 safe.remove(direction)
                 print("unsafe direction = ", direction)
 
-
-
-            if self.direction_valid(direction)==False:
-                safe.remove(direction)
-                print("backwards dir = ", direction)
+            if direction in safe:
+                if self.direction_valid(direction) == False:
+                    safe.remove(direction)
+                    print("backwards dir = ", direction)
 
         if direction not in safe and safe != []:
             direction = random.choice(safe)
 
         #self.move()
         choices = len(safe)
-        print ("choices", choices)
+        #print ("choices", choices)
         choose = random.randint(0, choices - 1)
+        print (safe)
         self.dir = safe[choose]
+        self.direction1 = self.dir
         print(self.dir)
-        print(choices)
+        #print(choices)
 
         """
         if self.dir == "r":
@@ -91,32 +92,34 @@ class BasicBot(Player):
 
     def has_collided(self, head):
         #figure out how to call the player paths from model, and call its own
-        print("here!")
+        #print("here!")
         #segments_to_check = cell_lst
         #head_loc = head
         #tuple(cell_lst)
         head_loc = head.topleft
+        print("head_loc",head_loc)
 
         for cell in self.model.cell_lst:
             if head_loc[0] in cell[0] and head_loc[1] in cell[1]:
-                print(cell)
+                #print(cell)
                 self.cell = cell
 
 
         if self.cell in self.model.player_paths:
-            print (self.model.player_paths)
+            #print (self.model.player_paths)
             return True
 
-    def direction_valid(self,direction):
-        if (direction == "u" and self.direction == "d"):
+    def direction_valid(self, direction):
+        if (direction == "u" and self.direction1 == "d"):
             return False
-        if (direction == "l" and self.direction == "r"):
+        if (direction == "l" and self.direction1 == "r"):
             return False
-        if (direction == "d" and self.direction == "u"):
+        if (direction == "d" and self.direction1 == "u"):
             return False
-        if (direction == "r" and self.direction == "l"):
+        if (direction == "r" and self.direction1 == "l"):
             return False
-        return True
+        else:
+            return True
 
         """#print ("head_loc = " + str(head_loc))
         #print ("head_loc = " + str(type(head_loc)))
