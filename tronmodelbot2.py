@@ -52,7 +52,7 @@ class TronModel(object):
         "Initiates number of players specified by user input"
         if self.num_players == 1:
             self.player1 = Player(self.screen,10,(self.width/2-100),(self.height/2),"l",self.color_strings[0],self.player_colors[0])
-            self.bot1 = BasicBot(self.screen,10,(self.width/2+100),(self.height/2),"r",self.color_strings[1],self.player_colors[1])
+            self.bot1 = BasicBot(self,self.screen,10,(self.width/2+100),(self.height/2),"r",self.color_strings[1],self.player_colors[1])
             self.players = [self.player1]
             self.bots = [self.bot1]
             print(self.players)
@@ -102,7 +102,7 @@ class TronModel(object):
             player.update()
             player.last_seen = player.current_cell
         for bot in self.bots:
-            bot.random_choice_move(self.player_paths)
+            bot.random_choice_move()
             bot.last_seen = bot.current_cell
 
         self.in_cell()
