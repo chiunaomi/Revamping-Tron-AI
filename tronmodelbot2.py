@@ -53,6 +53,7 @@ class TronModel(object):
         if self.num_players == 1:
             self.player1 = Player(self.screen,10,(self.width/2-100),(self.height/2),"l",self.color_strings[0],self.player_colors[0])
             self.bot1 = BasicBot(self,self.screen,10,(self.width/2+100),(self.height/2),"r",self.color_strings[1],self.player_colors[1])
+            #self.bot1 = MinimaxBot(self,self.screen,10,(self.width/2+100),(self.height/2),"r",self.color_strings[1],self.player_colors[1])
             self.players = [self.player1]
             self.bots = [self.bot1]
             print(self.players)

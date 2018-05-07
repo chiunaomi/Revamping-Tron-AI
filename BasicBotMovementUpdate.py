@@ -183,12 +183,13 @@ class Heuristic(self):
         return (4 - player_safe_count) / 3.0
 
 class MinimaxBot(Player):
-     This bot uses the well-known Minimax algorithm for its strategy,
+    This bot uses the well-known Minimax algorithm for its strategy,
     along with alpha-beta pruning to remove suboptimal branches.
     We use the following heuristic function to evaluate states:
     <To be done>
     For the leaves of the game tree, we consider win states to be 1
     and losses to be -1.
+
 
 
     def __init__(self, color, player_num, pruning=True, depth=1, heuristic=0):
@@ -241,6 +242,14 @@ class MinimaxBot(Player):
         #ret = scores.index(max(scores))
         #print "chose from: " + str(scores)
         return scores.index(max(scores)) # Move with highest score
+    def simple_heuristic(self):
+        player_safe_count = BasicBot.random_choice_move(self)
+        player_safe_count = len(player_safe_count)
+        if player_safe_count == 0:
+            return -1
+        else:
+            return 1
+        return (4 - player_safe_count) / 3.0
 
     #def min_play(self, player, opponent, depth, alpha, beta):
     #    outcome = self.evaluate_board(player, opponent, 2)
