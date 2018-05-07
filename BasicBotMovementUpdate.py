@@ -18,7 +18,7 @@ class BasicBot(Player):
     #def update(self):
         directions = ["r", "l", "u", "d"]
         safe = ["r", "l", "u", "d"]
-        print("lenSafe = ",len(safe))
+        #print("lenSafe = ",len(safe))
         #head = TronModel.in_cell(self)
         self.px = self.x
         self.py = self.y
@@ -54,7 +54,6 @@ class BasicBot(Player):
                 print("unsafe direction = ", direction)
 
 
-
             if self.direction_valid(direction)==False:
                 safe.remove(direction)
                 print("backwards dir = ", direction)
@@ -64,11 +63,11 @@ class BasicBot(Player):
 
         #self.move()
         choices = len(safe)
-        print ("choices", choices)
+        #print ("choices", choices)
         choose = random.randint(0, choices - 1)
         self.dir = safe[choose]
         print(self.dir)
-        print(choices)
+        #print(choices)
 
         """
         if self.dir == "r":
@@ -99,15 +98,15 @@ class BasicBot(Player):
 
         for cell in self.model.cell_lst:
             if head_loc[0] in cell[0] and head_loc[1] in cell[1]:
-                print(cell)
+                #print(cell)
                 self.cell = cell
 
 
         if self.cell in self.model.player_paths:
-            print (self.model.player_paths)
+            #print (self.model.player_paths)
             return True
 
-    def direction_valid(self,direction):
+    def direction_valid(self, direction):
         if (direction == "u" and self.direction == "d"):
             return False
         if (direction == "l" and self.direction == "r"):
