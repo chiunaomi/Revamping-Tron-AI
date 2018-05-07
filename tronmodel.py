@@ -45,6 +45,7 @@ class TronModel(object):
         self.game_over = False
         self.mode = None
         self.num_players = None
+        self.num_CPU = 0
 
     def init_players(self):
         "Initiates number of players specified by user input"
