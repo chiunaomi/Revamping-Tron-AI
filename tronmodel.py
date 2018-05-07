@@ -109,12 +109,13 @@ class TronModel(object):
     def end_game(self,player,color):
         """Contains end game protocol and end game display."""
         black = (0, 0, 0)
-        font = pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'TRON.TTF'), 25)
+        font = pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'Tr2n.ttf'), 70)
+        font2 = pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'Tr2n.ttf'), 35)
         label1= font.render(player + " WINS!", 1, color)
-        label2 = font.render("Press Space to Restart", 1, (255,255,255))
+        label2 = font2.render("Press Space to Restart", 1, (255,255,255))
         self.screen.fill(black)
-        self.screen.blit(label1,(185,100))
-        self.screen.blit(label2,(43,200))
+        self.screen.blit(label1,((self.width-font.size(player + " WINS!")[0])/2,100))
+        self.screen.blit(label2,((self.width-font2.size("Press Space to Restart")[0])/2,200))
         pygame.display.flip()
         self.game_over = True
         for player in self.players:

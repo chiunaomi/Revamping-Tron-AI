@@ -23,6 +23,7 @@ class PyGameWindowView(object):
         self.xlarge_font = pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'Tr2n.ttf'), 70)
         self.large_font = pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'Tr2n.ttf'), 45)
         self.small_font = pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'Tr2n.ttf'), 25)
+        self.arrows =  pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'Arrows.ttf'), 50)
 
     def start_screen(self):
         label1= self.font.render("Welcome to Tron Revamped", 1, self.blue)
@@ -129,7 +130,7 @@ class PyGameWindowView(object):
         down_rect_loc.append((int((self.model.width/2-side_length[0])/2+self.model.width/2),180))
         down_rect_loc.append((int((self.model.width/2-side_length[0])/2),350))
         down_rect_loc.append((int((self.model.width/2-side_length[0])/2+self.model.width/2),350))
-        control_keys = [("s","a","d","w"),("\u2BC6","\u2BC7","\u2BC7","\u2BC5"),("b","v","n","g"),("l","k",":","o")]
+        control_keys = [("s","a","d","w"),("T","R","Q","S"),("b","v","n","g"),("l","k",":","o")]
         if self.model.num_players != None:
             for i in range(self.model.num_players):
                 player = self.font.render(players[i],1,self.model.player_colors[i])
@@ -137,15 +138,43 @@ class PyGameWindowView(object):
                 self.model.screen.blit(player,loc)
                 down_button = pygame.Rect(down_rect_loc[i],side_length)
                 pygame.draw.rect(self.model.screen,self.model.player_colors[i],down_button,0)
-                up_button = pygame.Rect((down_rect_loc[i][0],down_rect_loc[i][1]-(side_length[0]+10)),side_length)
+                up = (down_rect_loc[i][0],down_rect_loc[i][1]-(side_length[0]+10))
+                up_button = pygame.Rect(up,side_length)
                 pygame.draw.rect(self.model.screen,self.model.player_colors[i],up_button,0)
-                left_button = pygame.Rect((down_rect_loc[i][0]-(side_length[0]+10),down_rect_loc[i][1]),side_length)
+                left = (down_rect_loc[i][0]-(side_length[0]+10),down_rect_loc[i][1])
+                left_button = pygame.Rect(left,side_length)
                 pygame.draw.rect(self.model.screen,self.model.player_colors[i],left_button,0)
-                right_button = pygame.Rect((down_rect_loc[i][0]+(side_length[0]+10),down_rect_loc[i][1]),side_length)
+                right = (down_rect_loc[i][0]+(side_length[0]+10),down_rect_loc[i][1])
+                right_button = pygame.Rect(right,side_length)
                 pygame.draw.rect(self.model.screen,self.model.player_colors[i],right_button,0)
-                down_symbol = self.solid_font.render(control_keys[i][0],1,self.black)
-                down_loc = (int((side_length[0]-self.small_font.size(control_keys[i][0])[0])/2+down_rect_loc[i][0]),down_rect_loc[i][1])
+                if i == 1:
+                    down_symbol = self.arrows.render(control_keys[i][0],1,self.black)
+                    down_loc = (int((side_length[0]-self.arrows.size(control_keys[i][0])[0])/2+down_rect_loc[i][0]),int((side_length[0]-self.arrows.size(control_keys[i][0])[1])/2+down_rect_loc[i][1]))
+                else:
+                    down_symbol = self.solid_font.render(control_keys[i][0],1,self.black)
+                    down_loc = (int((side_length[0]-self.solid_font.size(control_keys[i][0])[0])/2+down_rect_loc[i][0]),int((side_length[0]-self.solid_font.size(control_keys[i][0])[1])/2+down_rect_loc[i][1]))
                 self.model.screen.blit(down_symbol,down_loc)
+                if i == 1:
+                    left_symbol = self.arrows.render(control_keys[i][1],1,self.black)
+                    left_loc = (int((side_length[0]-self.arrows.size(control_keys[i][1])[0])/2+left[0]),int((side_length[0]-self.arrows.size(control_keys[i][1])[1])/2+left[1]))
+                else:
+                    left_symbol = self.solid_font.render(control_keys[i][1],1,self.black)
+                    left_loc = (int((side_length[0]-self.solid_font.size(control_keys[i][1])[0])/2+left[0]),int((side_length[0]-self.solid_font.size(control_keys[i][1])[1])/2+left[1]))
+                self.model.screen.blit(left_symbol,left_loc)
+                if i == 1:
+                    right_symbol = self.arrows.render(control_keys[i][2],1,self.black)
+                    right_loc = (int((side_length[0]-self.arrows.size(control_keys[i][2])[0])/2+right[0]),int((side_length[0]-self.arrows.size(control_keys[i][2])[1])/2+right[1]))
+                else:
+                    right_symbol = self.solid_font.render(control_keys[i][2],1,self.black)
+                    right_loc = (int((side_length[0]-self.solid_font.size(control_keys[i][2])[0])/2+right[0]),int((side_length[0]-self.solid_font.size(control_keys[i][2])[1])/2+right[1]))
+                self.model.screen.blit(right_symbol,right_loc)
+                if i == 1:
+                    up_symbol = self.arrows.render(control_keys[i][3],1,self.black)
+                    up_loc = (int((side_length[0]-self.arrows.size(control_keys[i][3])[0])/2+up[0]),int((side_length[0]-self.arrows.size(control_keys[i][3])[1])/2)+up[1])
+                else:
+                    up_symbol = self.solid_font.render(control_keys[i][3],1,self.black)
+                    up_loc = (int((side_length[0]-self.solid_font.size(control_keys[i][3])[0])/2+up[0]),int((side_length[0]-self.solid_font.size(control_keys[i][3])[1])/2)+up[1])
+                self.model.screen.blit(up_symbol,up_loc)
         controls_loc = (int((self.model.width-self.large_font.size("Player Controls")[0])/2),10)
         loading_loc = (int((self.model.width-self.large_font.size("Loading...")[0])/2),420)
         self.model.screen.blit(controls,controls_loc)
