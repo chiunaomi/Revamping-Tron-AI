@@ -19,58 +19,63 @@ class BasicBot(Player):
         self.py = 0
         #print(px,py)
 
-
-
         for d in range(4):
-            self.dir = directions[d]
-            if self.dir == "r":
+            direction = directions[d]
+            print ("rand_Dir = " + direction)
+            if direction == "r":
                 self.vx = 10
                 self.vy = 0
-            elif self.dir == "l":
+            elif direction == "l":
                 self.vx = -10
                 self.vy = 0
-            elif self.dir == "u":
+            elif direction == "u":
                 self.vx = 0
                 self.vy = -10
-            elif self.dir == "d":
+            elif direction == "d":
                 self.vx = 0
                 self.vy = 10
             self.px += self.vx
             self.py += self.vy
-            possible_head = Rect(self.px, self.py, 10, 10)
-            #print(px,py)
-            if self.has_collided(cell_lst, possible_head) == True: #or, then a function that checks whether the players have crashed
-                safe.remove(self.dir)
+            possible_head = ([(self.px, self.py)]) #list
+            #possible_head = Rect(self.px, self.py, 10, 10) #tuple
+            print(self.px,self.py)
+            if self.has_collided(cell_lst, possible_head)== True: #or, then a function that checks whether the players have crashed
+                print("hello there")
+                safe.remove(direction)
+                print("removing unsafe direction")
 
-        if self.dir not in safe and safe != []:
-            self.dir = random.choice(safe)
-            if self.dir == "r":
-                self.vx = 10
-                self.vy = 0
-            elif self.dir == "l":
-                self.vx = -10
-                self.vy = 0
-            elif self.dir == "u":
-                self.vx = 0
-                self.vy = -10
-            elif self.dir == "d":
-                self.vx = 0
-                self.vy = 10
-            self.x += self.vx
-            self.y += self.vy
+
+
+        if direction not in safe and safe != []:
+            direction = random.choice(safe)
+
+
 
         #self.move()
         choices = len(safe)
         choose = random.randint(0, choices - 1)
         self.dir = safe[choose]
+        print(self.dir)
+        print(choices)
         self.update()
 
-    def has_collided(self, cell_lst, head = None):
+    def has_collided(self, cell_lst, head):
         #figure out how to call the player paths from model, and call its own
-        segments_to_check = cell_lst
-        head_loc = head.topleft
+        print("here!")
+        #segments_to_check = cell_lst
+        head_loc = head
+        #tuple(cell_lst)
+        #head_loc = head.topleft
+
+        print ("head_loc = " + str(head_loc))
+        print ("head_loc = " + str(type(head_loc)))
+        print ("cell_lst = " + str(cell_lst))
+        print ("cell_lst =" + str(type(cell_lst)))
         if head_loc in cell_lst:
+            print("True")
+
             return True
+        #return (head.collidelist(segments_to_check) != -1)
             #(head.collidelist(segments_to_check) != -1)
                 #the above needs the input that checks the other players path from model
     #def move(self):
