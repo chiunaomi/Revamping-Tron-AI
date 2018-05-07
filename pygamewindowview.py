@@ -19,6 +19,7 @@ class PyGameWindowView(object):
         self.blue = (0, 150, 150)
         self.green = (0, 255, 0)
         self.font = pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'TRON.TTF'), 25)
+        self.small_font = pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'TRON.TTF'), 15)
 
     def start_screen(self):
         label1= self.font.render("Welcome to Tron Revamped", 1, self.blue)
@@ -109,6 +110,28 @@ class PyGameWindowView(object):
         self.model.screen.blit(opponents,(139,100))
         pygame.display.flip()
 
+    def display_controls(self):
+        self.model.screen.fill(self.black)
+        controls = self.font.render("Player Controls",1,(255,255,255))
+        loading = self.font.render("Loading...", 1, (255,255,255))
+        player1 = self.small_font.render("Player 1",1, self.model.player_colors[0])
+        player2 = self.small_font.render("Player 2", 1, self.model.player_colors[1])
+        player3 = self.small_font.render("Player 3", 1, self.model.player_colors[2])
+        player4 = self.small_font.render("Player 4", 1, self.model.player_colors[3])
+        controls_loc = (int((self.model.width-self.font.size("Player Controls")[0])/2),10)
+        loading_loc = (int((self.model.width-self.font.size("Loading...")[0])/2),420)
+        player1_loc = (int((self.model.width/2-self.small_font.size("Player 1")[0])/2),60)
+        player2_loc = (int((self.model.width/2-self.small_font.size("Player 2")[0])/2+self.model.width/2),60)
+        player3_loc = (int((self.model.width/2-self.small_font.size("Player 3")[0])/2),240)
+        player4_loc = (int((self.model.width/2-self.small_font.size("Player 4")[0])/2+self.model.width/2),240)
+        self.model.screen.blit(controls,controls_loc)
+        self.model.screen.blit(loading,loading_loc)
+        self.model.screen.blit(player1,player1_loc)
+        self.model.screen.blit(player2,player2_loc)
+        self.model.screen.blit(player3,player3_loc)
+        self.model.screen.blit(player4,player4_loc)
+        pygame.display.flip()
+
     def _init_draw(self):
         """Draws the grid on the screen and is only called at the beginning of a game."""
         self.model.screen.fill((105,105,105))
@@ -121,6 +144,7 @@ class PyGameWindowView(object):
         all_cells = self.model.cells.values()
         for cell in all_cells:
             cell.draw()
+        pygame.display.flip()
 
     def draw(self):
         """Draws the player paths and is updated and redrawn constantly"""

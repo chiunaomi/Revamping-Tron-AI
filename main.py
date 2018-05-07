@@ -12,7 +12,6 @@ from player import Player
 from cell import Cell
 from pygamewindowview import PyGameWindowView
 from tronmodel import TronModel
-from BasicBotMovementUp import BasicBot
 
 if __name__ == '__main__':
 
@@ -100,9 +99,11 @@ if __name__ == '__main__':
                                 end_multi2 = True
                     model.init_players()
                     end_player_setup = True
-
+            view.display_controls()
+            time.sleep(5)
             view._init_draw()
             controller.game_start = True
+            time.sleep(1)
             while not game_over:
                 for event in pygame.event.get():
                     if event.type == QUIT: #if the window is closed, break out of the two while loops and go to pygame.quit()
