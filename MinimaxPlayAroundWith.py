@@ -21,7 +21,6 @@ class BasicBot(Player):
 
         for d in range(4):
             direction = directions[d]
-            print ("rand_Dir = " + direction)
             if direction == "r":
                 self.vx = 10
                 self.vy = 0
@@ -36,14 +35,10 @@ class BasicBot(Player):
                 self.vy = 10
             self.px += self.vx
             self.py += self.vy
-            possible_head = ([(self.px, self.py)]) #list
-            #possible_head = Rect(self.px, self.py, 10, 10) #tuple
-            print(self.px,self.py)
-            if self.has_collided(cell_lst, possible_head)== True: #or, then a function that checks whether the players have crashed
-                print("hello there")
+            possible_head = Rect(self.px, self.py, 10, 10)
+            #print(px,py)
+            if self.has_collided(cell_lst, possible_head) == True: #or, then a function that checks whether the players have crashed
                 safe.remove(direction)
-                print("removing unsafe direction")
-
 
 
         if direction not in safe and safe != []:
@@ -56,26 +51,15 @@ class BasicBot(Player):
         choose = random.randint(0, choices - 1)
         self.dir = safe[choose]
         print(self.dir)
-        print(choices)
+        print(len(safe))
         self.update()
 
-    def has_collided(self, cell_lst, head):
+    def has_collided(self, cell_lst, head = None):
         #figure out how to call the player paths from model, and call its own
-        print("here!")
-        #segments_to_check = cell_lst
-        head_loc = head
-        #tuple(cell_lst)
-        #head_loc = head.topleft
-
-        print ("head_loc = " + str(head_loc))
-        print ("head_loc = " + str(type(head_loc)))
-        print ("cell_lst = " + str(cell_lst))
-        print ("cell_lst =" + str(type(cell_lst)))
+        segments_to_check = cell_lst
+        head_loc = head.topleft
         if head_loc in cell_lst:
-            print("True")
-
             return True
-        #return (head.collidelist(segments_to_check) != -1)
             #(head.collidelist(segments_to_check) != -1)
                 #the above needs the input that checks the other players path from model
     #def move(self):
@@ -96,11 +80,39 @@ class BasicBot(Player):
 
         #the above code
         #Add to the list of cell positions
-"""
+
 class Heuristic(self):
+    def safe(self):
+        directions = ["r", "l", "u", "d"]
+        safe = directions
+        #head = TronModel.in_cell(self)
+        self.px = 0
+        self.py = 0
+        #print(px,py)
+
+        for d in range(4):
+            direction = directions[d]
+            if direction == "r":
+                self.vx = 10
+                self.vy = 0
+            elif direction == "l":
+                self.vx = -10
+                self.vy = 0
+            elif direction == "u":
+                self.vx = 0
+                self.vy = -10
+            elif direction == "d":
+                self.vx = 0
+                self.vy = 10
+            self.px += self.vx
+            self.py += self.vy
+            possible_head = Rect(self.px, self.py, 10, 10)
+            #print(px,py)
+            if self.has_collided(cell_lst, possible_head) == True: #or, then a function that checks whether the players have crashed
+                safe.remove(direction)
+            player_safe_count= len(safe)
+
     def simple_heuristic(self):
-        player_safe_count = BasicBot.random_choice_move(self)
-        player_safe_count = len(player_safe_count)
         if player_safe_count == 0:
             return -1
         else:
@@ -122,9 +134,11 @@ class MinimaxBot(Player):
         self.pruning = pruning
         self.max_depth = depth # Max depth to explore for game tree
 
+    def set_direction(self):
+
     def choose_move(self, other_player):
         self.set_direction(self.minimax(other_player, 0))
-        self.move()
+        self.update()
 
     def evaluate_board(self, player, opponent, turn):
         player_lost = Player.crash(self) or Tronmodel.end_game(self)
@@ -203,4 +217,3 @@ class MinimaxBot(Player):
     #        if max_score == 1:
     #            return 1
     #    return max_score
-"""

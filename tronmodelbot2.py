@@ -112,7 +112,6 @@ class TronModel(object):
         #added to the list of cells that have been hit
             if player.current_cell in self.player_paths:
                 self.players.remove(player)
-                print(self.players)
                 player.alive = False
         for bot in self.bots:
             if bot.current_cell != bot.last_seen:
