@@ -49,14 +49,14 @@ class PyGameWindowView(object):
     def single_player_setup(self):
         self.model.screen.fill(self.black)
         side_length = (50,50)
-        opponents = self.font.render("Number of Opponents", 1, self.blue)
+        opponents = self.large_font.render("Number of Opponents", 1, self.blue)
         labelone = self.solid_font.render("1", 1, self.black)
         labeltwo = self.solid_font.render("2", 1, self.black)
         labelthree = self.solid_font.render("3", 1, self.black)
         one = pygame.Rect((85, 230),side_length)
         two = pygame.Rect((295, 230),side_length)
         three = pygame.Rect((505, 230),side_length)
-        self.model.screen.blit(opponents,((self.model.width-self.font.size("Number of Opponents")[0])/2,100))
+        self.model.screen.blit(opponents,((self.model.width-self.large_font.size("Number of Opponents")[0])/2,100))
         pygame.draw.rect(self.model.screen,self.green,one,0)
         pygame.draw.rect(self.model.screen,self.green,two,0)
         pygame.draw.rect(self.model.screen,self.green,three,0)
@@ -115,14 +115,14 @@ class PyGameWindowView(object):
 
     def display_controls(self):
         self.model.screen.fill(self.black)
-        controls = self.font.render("Player Controls",1,(255,255,255))
-        loading = self.font.render("Loading...", 1, (255,255,255))
+        controls = self.large_font.render("Player Controls",1,(255,255,255))
+        loading = self.large_font.render("Loading...", 1, (255,255,255))
         players = ["Player 1","Player 2","Player 3","Player 4"]
         player_loc = []
-        player_loc.append((int((self.model.width/2-self.small_font.size(players[0])[0])/2),70))
-        player_loc.append((int((self.model.width/2-self.small_font.size(players[1])[0])/2+self.model.width/2),70))
-        player_loc.append((int((self.model.width/2-self.small_font.size(players[2])[0])/2),250))
-        player_loc.append((int((self.model.width/2-self.small_font.size(players[3])[0])/2+self.model.width/2),250))
+        player_loc.append((int((self.model.width/2-self.font.size(players[0])[0])/2),70))
+        player_loc.append((int((self.model.width/2-self.font.size(players[1])[0])/2+self.model.width/2),70))
+        player_loc.append((int((self.model.width/2-self.font.size(players[2])[0])/2),250))
+        player_loc.append((int((self.model.width/2-self.font.size(players[3])[0])/2+self.model.width/2),250))
         side_length = (40,40)
         down_rect_loc = []
         down_rect_loc.append((int((self.model.width/2-side_length[0])/2),180))
@@ -132,7 +132,7 @@ class PyGameWindowView(object):
         control_keys = [("s","a","d","w"),("\u2BC6","\u2BC7","\u2BC7","\u2BC5"),("b","v","n","g"),("l","k",":","o")]
         if self.model.num_players != None:
             for i in range(self.model.num_players):
-                player = self.small_font.render(players[i],1,self.model.player_colors[i])
+                player = self.font.render(players[i],1,self.model.player_colors[i])
                 loc = player_loc[i]
                 self.model.screen.blit(player,loc)
                 down_button = pygame.Rect(down_rect_loc[i],side_length)
@@ -143,11 +143,11 @@ class PyGameWindowView(object):
                 pygame.draw.rect(self.model.screen,self.model.player_colors[i],left_button,0)
                 right_button = pygame.Rect((down_rect_loc[i][0]+(side_length[0]+10),down_rect_loc[i][1]),side_length)
                 pygame.draw.rect(self.model.screen,self.model.player_colors[i],right_button,0)
-                down_symbol = self.small_font.render(control_keys[i][0],1,self.black)
+                down_symbol = self.solid_font.render(control_keys[i][0],1,self.black)
                 down_loc = (int((side_length[0]-self.small_font.size(control_keys[i][0])[0])/2+down_rect_loc[i][0]),down_rect_loc[i][1])
                 self.model.screen.blit(down_symbol,down_loc)
-        controls_loc = (int((self.model.width-self.font.size("Player Controls")[0])/2),10)
-        loading_loc = (int((self.model.width-self.font.size("Loading...")[0])/2),420)
+        controls_loc = (int((self.model.width-self.large_font.size("Player Controls")[0])/2),10)
+        loading_loc = (int((self.model.width-self.large_font.size("Loading...")[0])/2),420)
         self.model.screen.blit(controls,controls_loc)
         self.model.screen.blit(loading,loading_loc)
         pygame.display.flip()
