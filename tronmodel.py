@@ -10,6 +10,7 @@ import os
 
 from player import Player
 from cell import Cell
+from BasicBotMovementUpdate import BasicBot
 
 class TronModel(object):
     """Model object containing the players, the game state, all cells, and the cells that have been hit."""
@@ -49,35 +50,53 @@ class TronModel(object):
 
     def init_players(self):
         "Initiates number of players specified by user input"
+        x_pos = [(self.width/2-100),(self.width/2+100)]
+        s_dir = ["l","r"]
+        if self.num_players + self.num_CPU == 2:
+            y_pos = [(self.height/2),(self.height/2)]
+        else:
+            y_pos = [(self.height/2-50),(self.height/2-50),(self.height/2+50),(self.height/2+50)]
         if self.num_players == None:
             return
         if self.num_players == 1:
-            self.player1 = Player(self.screen,10,(self.width/2-100),(self.height/2),"l",self.color_strings[0],self.player_colors[0])
+            self.player1 = Player(self.screen,10,x_pos[0],y_pos[0],s_dir[0],self.color_strings[0],self.player_colors[0])
             self.players = [self.player1]
         if self.num_players == 2:
-            self.player1 = Player(self.screen,10,(self.width/2-100),(self.height/2),"l",self.color_strings[0],self.player_colors[0])
-            self.player2 = Player(self.screen,10,(self.width/2+100),(self.height/2),"r",self.color_strings[1],self.player_colors[1])
+            self.player1 = Player(self.screen,10,x_pos[0],y_pos[0],s_dir[0],self.color_strings[0],self.player_colors[0])
+            self.player2 = Player(self.screen,10,x_pos[1],y_pos[1],s_dir[1],self.color_strings[1],self.player_colors[1])
             self.players = [self.player1,self.player2]
         if self.num_players == 3:
-            self.player1 = Player(self.screen,10,(self.width/2-100),(self.height/2-50),"l",self.color_strings[0],self.player_colors[0])
-            self.player2 = Player(self.screen,10,(self.width/2+100),(self.height/2-50),"r",self.color_strings[1],self.player_colors[1])
-            self.player3 = Player(self.screen,10,(self.width/2-100),(self.height/2+50),"l",self.color_strings[2],self.player_colors[2])
+            self.player1 = Player(self.screen,10,x_pos[0],y_pos[0],s_dir[0],self.color_strings[0],self.player_colors[0])
+            self.player2 = Player(self.screen,10,x_pos[1],y_pos[1],s_dir[1],self.color_strings[1],self.player_colors[1])
+            self.player3 = Player(self.screen,10,x_pos[0],y_pos[2],s_dir[0],self.color_strings[2],self.player_colors[2])
             self.players = [self.player1,self.player2,self.player3]
         if self.num_players == 4:
-            self.player1 = Player(self.screen,10,(self.width/2-100),(self.height/2-50),"l",self.color_strings[0],self.player_colors[0])
-            self.player2 = Player(self.screen,10,(self.width/2+100),(self.height/2-50),"r",self.color_strings[1],self.player_colors[1])
-            self.player3 = Player(self.screen,10,(self.width/2-100),(self.height/2+50),"l",self.color_strings[2],self.player_colors[2])
-            self.player4 = Player(self.screen,10,(self.width/2+100),(self.height/2+50),"r",self.color_strings[3],self.player_colors[3])
+            self.player1 = Player(self.screen,10,x_pos[0],y_pos[0],s_dir[0],self.color_strings[0],self.player_colors[0])
+            self.player2 = Player(self.screen,10,x_pos[1],y_pos[1],s_dir[1],self.color_strings[1],self.player_colors[1])
+            self.player3 = Player(self.screen,10,x_pos[0],y_pos[2],s_dir[0],self.color_strings[2],self.player_colors[2])
+            self.player4 = Player(self.screen,10,x_pos[1],y_pos[3],s_dir[1],self.color_strings[3],self.player_colors[3])
             self.players = [self.player1,self.player2,self.player3,self.player4]
+        if self.num_CPU == None:
+            return
         if self.num_CPU == 1:
-            print(1)
+            self.bot1 = BasicBot(self,self.screen,10,x_pos[self.num_players%2],y_pos[self.num_players],s_dir[self.num_players%2],self.color_strings[self.num_players],self.player_colors[self.num_players])
+            self.bots = [self.bot1]
         if self.num_CPU == 2:
-            print(2)
+            self.bot1 = BasicBot(self,self.screen,10,x_pos[self.num_players%2],y_pos[self.num_players],s_dir[self.num_players%2],self.color_strings[self.num_players],self.player_colors[self.num_players])
+            self.bot2 = BasicBot(self,self.screen,10,x_pos[(self.num_players+1)%2],y_pos[self.num_players+1],s_dir[(self.num_players+1)%2],self.color_strings[self.num_players+1],self.player_colors[self.num_players+1])
+            self.bots = [self.bot1,self.bot2]
+        if self.num_CPU == 3:
+            self.bot1 = BasicBot(self,self.screen,10,x_pos[self.num_players%2],y_pos[self.num_players],s_dir[self.num_players%2],self.color_strings[self.num_players],self.player_colors[self.num_players])
+            self.bot2 = BasicBot(self,self.screen,10,x_pos[(self.num_players+1)%2],y_pos[self.num_players+1],s_dir[(self.num_players+1)%2],self.color_strings[self.num_players+1],self.player_colors[self.num_players+1])
+            self.bot3 = BasicBot(self,self.screen,10,x_pos[(self.num_players+2)%2],y_pos[self.num_players+2],s_dir[(self.num_players+2)%2],self.color_strings[self.num_players+2],self.player_colors[self.num_players+2])
+            self.bots = [self.bot1,self.bot2,self.bot3]
 
     def _draw_players(self):
         """Calls the player objects' draw functions"""
         for player in self.players:
             player.draw()
+        for bot in self.bots:
+            bot.draw()
 
     def in_cell(self):
         """Loops through cell_lst to find the cell whose xrange contains player.x
@@ -87,12 +106,20 @@ class TronModel(object):
                 if player.x in cell[0] and player.y in cell[1]:
                     player.current_cell = cell
                     break
+        for bot in self.bots:
+            for cell in self.cell_lst:
+                if bot.x in cell[0] and bot.y in cell[1]:
+                    bot.current_cell = cell
+                    break
 
     def update(self):
         """Checks for new inputs and updates the game model."""
         for player in self.players:
             player.update()
             player.last_seen = player.current_cell
+        for bot in self.bots:
+            bot.random_choice_move()
+            bot.last_seen = bot.current_cell
 
         self.in_cell()
         for player in self.players:
@@ -103,8 +130,18 @@ class TronModel(object):
             if player.current_cell in self.player_paths:
                 self.players.remove(player)
                 player.alive = False
-        if len(self.players) == 1:
-            self.end_game(self.players[0].name,self.players[0].color)
+        for bot in self.bots:
+            if bot.current_cell != bot.last_seen:
+                self.player_paths.add(bot.last_seen)
+            if bot.current_cell in self.player_paths:
+                self.bots.remove(bot)
+                print(self.bots)
+                bot.alive = False
+        if len(self.players) + len(self.bots) == 1:
+            if len(self.players) == 1:
+                self.end_game(self.players[0].name,self.players[0].color)
+            if len(self.bots) == 1:
+                self.end_game(self.bots[0].name,self.bots[0].color)
 
     def end_game(self,player,color):
         """Contains end game protocol and end game display."""

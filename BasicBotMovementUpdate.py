@@ -7,8 +7,8 @@ import random
 #self.player2.x for example as an argument
 #abstract end game and crash from player and tronmodel as much as possible
 class BasicBot(Player):
-    def __init__(self, model, draw_screen, dimension, start_posx, start_posy, direction, color_name, color=(255,255,255)) :
-        Player.__init__(self, draw_screen, dimension, start_posx, start_posy, direction, color_name, color=(255,255,255))
+    def __init__(self, model, draw_screen, dimension, start_posx, start_posy, direction, color_name, color) :
+        Player.__init__(self, draw_screen, dimension, start_posx, start_posy, direction, color_name, color)
         #reset it so the model outputs a new list and sends the list each time to the AI
         self.model = model
         self.cell = None
