@@ -7,19 +7,26 @@ import random
 #self.player2.x for example as an argument
 #abstract end game and crash from player and tronmodel as much as possible
 class BasicBot(Player):
-    def __init__(self, draw_screen, dimension, start_posx, start_posy, direction, color_name, color=(255,255,255)) :
+    def __init__(self, model, draw_screen, dimension, start_posx, start_posy, direction, color_name, color=(255,255,255)) :
         Player.__init__(self, draw_screen, dimension, start_posx, start_posy, direction, color_name, color=(255,255,255))
         #reset it so the model outputs a new list and sends the list each time to the AI
-    def random_choice_move(self,cell_lst):
+        self.model = model
+        self.cell = None
+        self.direction = "r"
+
+    def random_choice_move(self):
     #def update(self):
         directions = ["r", "l", "u", "d"]
-        safe = directions
+        safe = ["r", "l", "u", "d"]
+        print("lenSafe = ",len(safe))
         #head = TronModel.in_cell(self)
-        self.px = 0
-        self.py = 0
+        self.px = self.x
+        self.py = self.y
         #print(px,py)
+        #print (directions)
 
         for d in range(4):
+
             direction = directions[d]
             print ("rand_Dir = " + direction)
             if direction == "r":
@@ -38,28 +45,51 @@ class BasicBot(Player):
             self.py += self.vy
             #possible_head = ([(self.px, self.py)]) #list
             possible_head = Rect(self.px, self.py, 10, 10) #tuple
+            print(possible_head)
             print(self.px,self.py)
-            if self.has_collided(cell_lst, possible_head)== True: #or, then a function that checks whether the players have crashed
-                print("hello there")
+            #safe.remove(self.prev_dir)
+            if self.has_collided(possible_head): #or, then a function that checks whether the players have crashed
+                #print("hello there")
                 safe.remove(direction)
-                print("removing unsafe direction")
+                print("unsafe direction = ", direction)
 
 
+
+            if self.direction_valid(direction)==False:
+                safe.remove(direction)
+                print("backwards dir = ", direction)
 
         if direction not in safe and safe != []:
             direction = random.choice(safe)
 
-
-
         #self.move()
         choices = len(safe)
+        print ("choices", choices)
         choose = random.randint(0, choices - 1)
         self.dir = safe[choose]
         print(self.dir)
         print(choices)
+
+        """
+        if self.dir == "r":
+            self.prev_dir = "l"
+
+        elif self.dir == "l":
+            self.prev_dir = "r"
+
+        elif self.dir== "u":
+            self.prev_dir = "d"
+
+        elif self.dir == "d":
+            self.prev_dir = "u"
+        """
+
+
         self.update()
 
-    def has_collided(self, cell_lst, head):
+
+
+    def has_collided(self, head):
         #figure out how to call the player paths from model, and call its own
         print("here!")
         #segments_to_check = cell_lst
@@ -67,12 +97,33 @@ class BasicBot(Player):
         #tuple(cell_lst)
         head_loc = head.topleft
 
-        #print ("head_loc = " + str(head_loc))
-        print ("head_loc = " + str(type(head_loc)))
+        for cell in self.model.cell_lst:
+            if head_loc[0] in cell[0] and head_loc[1] in cell[1]:
+                print(cell)
+                self.cell = cell
+
+
+        if self.cell in self.model.player_paths:
+            print (self.model.player_paths)
+            return True
+
+    def direction_valid(self,direction):
+        if (direction == "u" and self.direction == "d"):
+            return False
+        if (direction == "l" and self.direction == "r"):
+            return False
+        if (direction == "d" and self.direction == "u"):
+            return False
+        if (direction == "r" and self.direction == "l"):
+            return False
+        return True
+
+        """#print ("head_loc = " + str(head_loc))
+        #print ("head_loc = " + str(type(head_loc)))
         #print ("cell_lst = " + str(cell_lst))
-        print ("cell_lst =" + str(type(cell_lst)))
+        #print ("cell_lst =" + str(type(cell_lst)))
         #print ("myCellList =" + str(type(myCellList)))
-        print("popped val = ", str(type(cell_lst.pop())))
+        #print("popped val = ", str(type(cell_lst.pop())))
         #print("popped2 val = ", cell_lst.pop(cell_lst.pop()))
         temp = cell_lst.pop()
         temp2 = temp[0]
@@ -116,6 +167,7 @@ class BasicBot(Player):
 
         #the above code
         #Add to the list of cell positions
+"""
 """
 class Heuristic(self):
     def simple_heuristic(self):
