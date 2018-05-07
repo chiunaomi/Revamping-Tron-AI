@@ -36,8 +36,8 @@ class BasicBot(Player):
                 self.vy = 10
             self.px += self.vx
             self.py += self.vy
-            possible_head = ([(self.px, self.py)]) #list
-            #possible_head = Rect(self.px, self.py, 10, 10) #tuple
+            #possible_head = ([(self.px, self.py)]) #list
+            possible_head = Rect(self.px, self.py, 10, 10) #tuple
             print(self.px,self.py)
             if self.has_collided(cell_lst, possible_head)== True: #or, then a function that checks whether the players have crashed
                 print("hello there")
@@ -63,14 +63,34 @@ class BasicBot(Player):
         #figure out how to call the player paths from model, and call its own
         print("here!")
         #segments_to_check = cell_lst
-        head_loc = head
+        #head_loc = head
         #tuple(cell_lst)
-        #head_loc = head.topleft
+        head_loc = head.topleft
 
-        print ("head_loc = " + str(head_loc))
+        #print ("head_loc = " + str(head_loc))
         print ("head_loc = " + str(type(head_loc)))
-        print ("cell_lst = " + str(cell_lst))
+        #print ("cell_lst = " + str(cell_lst))
         print ("cell_lst =" + str(type(cell_lst)))
+        #print ("myCellList =" + str(type(myCellList)))
+        print("popped val = ", str(type(cell_lst.pop())))
+        #print("popped2 val = ", cell_lst.pop(cell_lst.pop()))
+        temp = cell_lst.pop()
+        temp2 = temp[0]
+        temp3 = (list(temp2))[0]
+        print("popped", temp, temp2, temp3, type(temp2))
+        tempx = (list(temp[0]))[0]
+        tempy = (list(temp[1]))[0]
+        print ("unfucked_coords =",tempx, tempy)
+        new_cell_list = []
+        cell_leng = len(cell_lst)
+        for i in cell_leng:
+            temp = cell_lst.pop()
+            tempx = (list(temp[0]))[0]
+            tempy = (list(temp[1]))[0]
+            new_cell_list.append((tempx, tempy))
+        print(new_cell_list)
+
+
         if head_loc in cell_lst:
             print("True")
 

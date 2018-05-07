@@ -22,10 +22,12 @@ class TronModel(object):
         self.cell_length = cell_length
         self.cell_lst = set()
         self.player_paths = set()
+        self.myCellList = list()
         for i in range(self.width//cell_length):
             for j in range(self.height//cell_length):
                 cell = Cell(self.screen,(i*self.cell_length,j*self.cell_length),cell_length)
                 self.cell_lst.add((cell.xrange,cell.yrange))
+                #self.myCellList.append((cell.xrange,cell.yrange))
         for i in range(self.height//cell_length):
             cell = Cell(self.screen,(-10,i*self.cell_length),cell_length)
             self.cell_lst.add((cell.xrange,cell.yrange))
