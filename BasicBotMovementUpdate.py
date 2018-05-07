@@ -1,5 +1,5 @@
 from player import*
-from tronmodelbot import*
+from tronmodelbot2 import*
 import random
 #argument that takes the position of the other player and takes it into consideration
 #input single numbers into the functions as much as possible
