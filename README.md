@@ -3,21 +3,21 @@
 # Revamping Tron with AI
 
 #### Current Status:
-This readme has been updated to reflect our progress up until our first code review. Two different types of AI have been written, but have yet to be implemented. In parallel, the existing Tron game has been reformatted for ease of AI implementation and debugged.
+This readme has been updated to reflect our progress as of 5/7/18. The existing code has been reformatted with better user interfacing allowing for single player and multiplayer game modes and variability of the number of players. Processes have also been incorporated to prepare for the integration of AI controlled opponents. Our AI algorithm has been written and is being edited for implementation which has not happened yet. 
 
 ### Description: 
-This is a two or more player game based on the classic arcade game Tron. At least two players (either users of AI) compete for survival as they drive "light bikes" around a two dimensional playing field, leaving a "light wall" in their wake. Each player (or AI) attempts to box the other in, by forcing the other player to run into either their or their own "light wall", killing them. The winner is the last player left standing. 
+This is a remake of the classic arcade minigame "Tron Lightbikes". In this survival style snake game, players compete to be the last one standing by avoiding the walls created by each player's path while staying within the playing field. With up to four players allowed to play at once, with any combination of players or AI controlled bots, this game allows for single player and multiplayer game modes. 
 
-Each player is controlled by W,A,S,D or the arrow keys.
+Players are controlled using keyboard controls. 
 
 ### Authors:
 Naomi Chiu | Alex Frye | Jessie Potter
 
 ### Getting Started:
-Install pygame (`$ pip install pygame` in the terminal window)
+Install pygame (`pip install pygame` in the terminal window)
 
 ### Usage
-Run main.py with Python 3 (`Python3 main.py` in the terminal window)
+Run main.py with Python 3 (`python3 main.py` in the terminal window)
 
 ### License
 {Add later}
