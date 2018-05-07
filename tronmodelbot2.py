@@ -10,8 +10,7 @@ import os
 
 from player import Player
 from cell import Cell
-from BasicBotMovementUp import*
-
+from BasicBotMovementUpdate import*
 class TronModel(object):
     """Model object containing the players, the game state, all cells, and the cells that have been hit."""
     def __init__(self,cell_length,width,height):
