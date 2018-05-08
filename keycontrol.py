@@ -18,6 +18,7 @@ class KeyControl(object):
         self.game_start = False
 
     def handle_mode_setup(self, event):
+        "Recognizes where the mouse is clicked on the mode setup screen to initiate the correct mode"
         if event.type != MOUSEBUTTONDOWN:
             return
         if event.type == MOUSEBUTTONDOWN and not self.end_mode_setup:
@@ -31,6 +32,7 @@ class KeyControl(object):
                     return True
 
     def handle_single(self, event):
+        "Recognizes where the mouse is clicked on the single player setup screen to initiate the correct number of AI opponents"
         if event.type != MOUSEBUTTONDOWN:
             return
         if event.type == MOUSEBUTTONDOWN and not self.end_player_setup:
@@ -47,6 +49,7 @@ class KeyControl(object):
                     return True
 
     def handle_multi1(self, event):
+        "Recognizes where the mouse is clicked on the first multiplayer setup screen to initiate the correct number of players"
         if event.type != MOUSEBUTTONDOWN:
             return
         if event.type == MOUSEBUTTONDOWN and not self.end_player_setup:
@@ -63,6 +66,7 @@ class KeyControl(object):
                     return True
 
     def handle_multi2(self, event):
+        "Recognizes where the mouse is clicked on the second multiplayer setup screen to initate the correct number of AI opponents"
         if event.type != MOUSEBUTTONDOWN:
             return
         if event.type == MOUSEBUTTONDOWN and not self.end_player_setup:
@@ -87,6 +91,7 @@ class KeyControl(object):
                         return True
 
     def handle_event(self, event):
+        "Controls all the key controls for each player and returns the correct direction string to the corresponding player object"
         if event.type != KEYDOWN:
             return #if no keys were pressed it quits
 
