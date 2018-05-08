@@ -37,6 +37,7 @@ The below image depicts how a MiniMax AI will tree search all the possible moves
 MiniMax performance can be improved with custom heuristics, such as weighting near-game moves more heavily, since the long-game is uncertain.
 
 Our final MiniMax algorithm relies on a flood fill search strategy to determine the longest possible path of travel without colliding with an opponent. Our flood fill implementation, much like the one below, searches the entirety of the playing field to determine the set of possible points to which the AI can travel.
+
 ![Flood Fill Gif](imgs/Recursive_Flood_Fill_4.gif)
 
 MiniMax is then applied to the flood fill data to determine the best (in our case, longest) path.
@@ -46,8 +47,7 @@ The AI component of our final system design relies on a flood fill algorithm whi
 
 In addition to the AI, we have added multi-player and multi-AI modes with their respective configuration screens, as well as improved stability and function to the overall program.
 
-640x480
-## Detailed Game Description (results)
+## Game Description
 Once launched, the user is presented with a splash screen:
 ![Welcome Screen](imgs/Welcome_Screen.png)
 The user is then given the choice of playing with either between two and four human players through keyboard input, or against between one and three AI bots:
@@ -57,6 +57,5 @@ Prior to the game beginning, keyboard controls for each player are displayed on 
 ![4 Player Loading/Instruction Screen](imgs/4_players.png)
 
 
-* Screen caps of game play and various features
 * Show AI effectiveness through end-game screen caps
-* Gif of gameplay
+* add gif of gameplay

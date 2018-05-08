@@ -1,23 +1,62 @@
-### SoftDes Final Project 
+### SoftDes Final Project
 
 # Revamping Tron with AI
+Updated 5/7/18
 
-#### Current Status:
-This readme has been updated to reflect our progress as of 5/7/18. The existing code has been reformatted with better user interfacing allowing for single player and multiplayer game modes and variability of the number of players. Processes have also been incorporated to prepare for the integration of AI controlled opponents. Our AI algorithm has been written and is being edited for implementation which has not happened yet. 
+### Description:
+This is a remake of the classic arcade minigame "Tron Lightbikes". In this survival style snake game, players compete to be the last one standing by avoiding the walls created by each player's path while staying within the playing field. With up to four players allowed to play at once, with any combination of players or AI controlled bots, this game allows for single player and multiplayer game modes.
 
-### Description: 
-This is a remake of the classic arcade minigame "Tron Lightbikes". In this survival style snake game, players compete to be the last one standing by avoiding the walls created by each player's path while staying within the playing field. With up to four players allowed to play at once, with any combination of players or AI controlled bots, this game allows for single player and multiplayer game modes. 
-
-Players are controlled using keyboard controls. 
+Players are controlled using keyboard controls.
 
 ### Authors:
-Naomi Chiu | Alex Frye | Jessie Potter
+[Naomi Chiu](https://github.com/chiunaomi) | [Alex Frye](https://github.com/AlexFrye) | [Jessie Potter](https://github.com/JessiePotter).
 
-### Getting Started:
-Install pygame (`pip install pygame` in the terminal window)
+
+# Getting Started
+## Installing Pygame
+In order to run `Revamping-Tron-AI` and play our Tron game, you need to have `pygame` installed. To install `pygame` for python3, enter in the command window
+``` bash
+$ pip install pygame
+```
+
+## Obtaining the code
+To obtain the code to run `Revamping-Tron-AI`, the repository should be cloned.
+``` bash
+$ git clone https://github.com/chiunaomi/Revamping-Tron-AI.git
+```
+## Running the code
+To play our game after the repository has been cloned, run the `main.py` file.
+``` bash
+~/Revamping-Tron-AI$ python3 main.py
+```
 
 ### Usage
-Run main.py with Python 3 (`python3 main.py` in the terminal window)
+Run main.py with Python 3
+```bash
+python3 main.py
+```
+The game can be navagated with keyboard input following on-screen prompts. The game is exited by closing the window or stopping Python.
 
 ### License
-{Add later}
+
+MIT License
+
+Copyright (c) [2018] [Naomi Chiu, Alex Frye, Jessie Potter]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
