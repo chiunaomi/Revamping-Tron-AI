@@ -26,6 +26,7 @@ class PyGameWindowView(object):
         self.arrows =  pygame.font.Font(os.path.join(os.path.dirname(os.path.realpath(__file__)),'Arrows.ttf'), 50)
 
     def start_screen(self):
+        "Opening Screen for the game"
         label1= self.font.render("Welcome to Tron Revamped", 1, self.blue)
         label2 = self.font.render("Press Space to Start", 1, self.green)
         self.model.screen.fill(self.black)
@@ -34,6 +35,7 @@ class PyGameWindowView(object):
         pygame.display.flip()
 
     def mode_setup(self):
+        "Screen for choosing between single player and multiplayer game modes"
         label = self.xlarge_font.render("Game Mode", 1, self.blue)
         one = pygame.Rect(((self.model.width-380)/2,200),(380,70))
         labelone = self.large_font.render("Single Player", 1, self.black)
@@ -48,6 +50,7 @@ class PyGameWindowView(object):
         pygame.display.flip()
 
     def single_player_setup(self):
+        "Screen for choosing the number of AI opponents for single player game play"
         self.model.screen.fill(self.black)
         side_length = (50,50)
         opponents = self.large_font.render("Number of Opponents", 1, self.blue)
@@ -67,6 +70,7 @@ class PyGameWindowView(object):
         pygame.display.flip()
 
     def multi_player_setup1(self):
+        "Screen for choosing the number of players for multiplayer game play"
         self.model.screen.fill(self.black)
         side_length = (50,50)
         players = self.font.render("Number of Players", 1, self.blue)
@@ -86,6 +90,7 @@ class PyGameWindowView(object):
         pygame.display.flip()
 
     def multi_player_setup2(self):
+        "Screen for choosing the number of AI bots for multiplayer game play"
         self.model.screen.fill(self.black)
         side_length = (50,50)
         opponents = self.font.render("Number of CPUs", 1, self.blue)
@@ -115,6 +120,7 @@ class PyGameWindowView(object):
         pygame.display.flip()
 
     def display_controls(self):
+        "Screen displaying the corresponding keypad controls for each player"
         self.model.screen.fill(self.black)
         controls = self.large_font.render("Player Controls",1,(255,255,255))
         loading = self.large_font.render("Loading...", 1, (255,255,255))
