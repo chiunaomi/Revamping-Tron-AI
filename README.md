@@ -44,6 +44,7 @@ The game can be navagated with keyboard input following on-screen prompts. The g
 ## Poster
 
 [Poster Link](SoftDes_Final_Poster_1.4.pdf)
+(It's a big file - you might have to download it)
 
 
 ### License
