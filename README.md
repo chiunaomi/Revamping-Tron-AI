@@ -43,7 +43,8 @@ The game can be navagated with keyboard input following on-screen prompts. The g
 
 ## Poster
 
-* add link
+[Poster Link](Revamping-Tron-AI/SoftDes_Final_Poster_1.4.pdf)
+
 
 ### License
 
