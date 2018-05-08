@@ -57,6 +57,7 @@ Prior to the game beginning, keyboard controls for each player are displayed on 
 ![4 Players Loading/Instruction Screen](imgs/4_players.png)
 
 ![1 Player, 3 AI](imgs/1player_3AI_2.gif)
+![4 Players](imgs/4player.gif)
 
 * Show AI effectiveness through end-game screen caps
 * add gif of gameplay
