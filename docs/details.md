@@ -36,12 +36,17 @@ The below image depicts how a MiniMax AI will tree search all the possible moves
 
 MiniMax performance can be improved with custom heuristics, such as weighting near-game moves more heavily, since the long-game is uncertain.
 
-* Updated architectural diagrams (inheritance and dependencies from each class to class)
-* Description of AI MiniMax Flood fill
+Our final MiniMax algorithm relies on a flood fill search strategy to determine the longest possible path of travel without colliding with an opponent. Our flood fill implementation, much like the one below, searches the entirety of the playing field to determine the set of possible points to which the AI can travel.
+![Flood Fill Gif](imgs/Recursive_Flood_Fill_4.gif)
+
+MiniMax is then applied to the flood fill data to determine the best (in our case, longest) path.
+
+The AI component of our final system design relies on a flood fill algorithm which randomly and progressively searches throughout the playing field. Valid moves are then returned to the MiniMax function which maximizes the possible distance traveled.
+![Final System Architecture Diagram](imgs/Final_Sys_Arch_Diag.png)
+
+In addition to the AI, we have added multi-player and multi-AI modes with their respective configuration screens, as well as improved stability and function to the overall program.
+
   * Add bits of critical code
-* Simple diagram or gif of flood fill
-* Flow chart of diagram function
-* Use progressive mid-game screen caps to show how AI works
 
 
 ## Detailed Game Description (results)
