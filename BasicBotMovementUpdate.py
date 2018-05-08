@@ -18,35 +18,62 @@ class BasicBot(Player):
         safe = ["r", "l", "u", "d"]
         self.px = self.x
         self.py = self.y
-        for d in range(4):
-            direction = directions[d]
-            if direction == "r":
-                self.vx = 10
-                self.vy = 0
-            elif direction == "l":
-                self.vx = -10
-                self.vy = 0
-            elif direction == "u":
-                self.vx = 0
-                self.vy = -10
-            elif direction == "d":
-                self.vx = 0
-                self.vy = 10
-            self.px += self.vx
-            self.py += self.vy
-            possible_head = (self.px,self.py)
-            if self.has_collided(possible_head):
-                safe.remove(direction)
-            if direction in safe:
-                if not self.direction_valid(direction):
+
+        self.pseudo_update(self.dir)
+        next_head = (self.px,self.py)
+        if self.has_collided(next_head):
+            for d in range(4):
+                self.px = self.x
+                self.py = self.y
+                direction = directions[d]
+                if direction == "r":
+                    self.vx = 10
+                    self.vy = 0
+                elif direction == "l":
+                    self.vx = -10
+                    self.vy = 0
+                elif direction == "u":
+                    self.vx = 0
+                    self.vy = -10
+                elif direction == "d":
+                    self.vx = 0
+                    self.vy = 10
+                self.px += self.vx
+                self.py += self.vy
+                possible_head = (self.px,self.py)
+                if self.has_collided(possible_head):
                     safe.remove(direction)
-        #if direction not in safe and safe != []:
-            #direction = random.choice(safe)
-        choices = len(safe)
-        choose = random.randint(0, choices - 1)
-        self.dir = safe[choose]
-        self.direction1 = self.dir
+                if direction in safe:
+                    if not self.direction_valid(direction):
+                        safe.remove(direction)
+            choices = len(safe)
+            if choices != 0:
+                choose = random.randint(0, choices - 1)
+                dir = safe[choose]
+            else:
+                dir = self.dir
+            self.dir = dir
+            self.direction1 = self.dir
         self.update()
+
+    def pseudo_update(self,direction):
+        if direction == "r":
+            self.vx = 10
+            self.vy = 0
+        elif direction == "l":
+            self.vx = -10
+            self.vy = 0
+        elif direction == "u":
+            self.vx = 0
+            self.vy = -10
+        elif direction == "d":
+            self.vx = 0
+            self.vy = 10
+        elif direction == "None":
+            self.vx = 0
+            self.vy = 0
+        self.px += self.vx
+        self.py += self.vy
 
     def has_collided(self, head):
         for cell in self.model.cell_lst:
