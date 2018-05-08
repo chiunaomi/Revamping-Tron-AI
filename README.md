@@ -37,6 +37,14 @@ python3 main.py
 ```
 The game can be navagated with keyboard input following on-screen prompts. The game is exited by closing the window or stopping Python.
 
+## Video
+[Link](Link)
+* add link
+
+## Poster
+
+* add link
+
 ### License
 
 MIT License
