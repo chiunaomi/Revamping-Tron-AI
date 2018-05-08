@@ -49,7 +49,7 @@ class TronModel(object):
         self.num_CPU = 0
 
     def init_players(self):
-        "Initiates number of players specified by user input"
+        "Initiates number of players and AI bots specified by user input"
         x_pos = [(self.width/2-100),(self.width/2+100)]
         s_dir = ["l","r"]
         if self.num_players + self.num_CPU == 2:
@@ -92,15 +92,15 @@ class TronModel(object):
             self.bots = [self.bot1,self.bot2,self.bot3]
 
     def _draw_players(self):
-        """Calls the player objects' draw functions"""
+        """Calls the player and bot objects' draw functions"""
         for player in self.players:
             player.draw()
         for bot in self.bots:
             bot.draw()
 
     def in_cell(self):
-        """Loops through cell_lst to find the cell whose xrange contains player.x
-        and whose yrange contains player.y, and sets the player location to be within that cell."""
+        """Loops through cell_lst to find the cell whose xrange contains player.x or bot.x
+        and whose yrange contains player.y or bot.y, and sets the player/bot location to be within that cell."""
         for player in self.players:
             for cell in self.cell_lst:
                 if player.x in cell[0] and player.y in cell[1]:
@@ -118,10 +118,10 @@ class TronModel(object):
             player.update()
             player.last_seen = player.current_cell
         for bot in self.bots:
-            bot.random_choice_move()
+            bot.random_choice_move() #bot performs depth search and chooses the best direction
             bot.last_seen = bot.current_cell
 
-        self.in_cell()
+        self.in_cell() #updates the cell locations of each player/bot
         for player in self.players:
             if player.current_cell != player.last_seen:
                 self.player_paths.add(player.last_seen)
@@ -130,6 +130,8 @@ class TronModel(object):
             if player.current_cell in self.player_paths:
                 self.players.remove(player)
                 player.alive = False
+        #If the player's location is in the list of cells
+        #that already have been traversed, the player is removed from play
         for bot in self.bots:
             if bot.current_cell != bot.last_seen:
                 self.player_paths.add(bot.last_seen)
@@ -137,7 +139,7 @@ class TronModel(object):
                 self.bots.remove(bot)
                 print(self.bots)
                 bot.alive = False
-        if len(self.players) + len(self.bots) == 1:
+        if len(self.players) + len(self.bots) == 1:#checks to see if there is only 1 player/bot left in the game
             if len(self.players) == 1:
                 self.end_game(self.players[0].name,self.players[0].color)
             if len(self.bots) == 1:
@@ -153,7 +155,7 @@ class TronModel(object):
         self.screen.fill(black)
         self.screen.blit(label1,((self.width-font.size(player + " WINS!")[0])/2,100))
         self.screen.blit(label2,((self.width-font2.size("Press Space to Restart")[0])/2,200))
-        #pygame.display.flip()
+        pygame.display.flip()
         self.game_over = True
         for player in self.players:
             player.dir = "None"

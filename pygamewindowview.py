@@ -153,6 +153,8 @@ class PyGameWindowView(object):
                 right = (down_rect_loc[i][0]+(side_length[0]+10),down_rect_loc[i][1])
                 right_button = pygame.Rect(right,side_length)
                 pygame.draw.rect(self.model.screen,self.model.player_colors[i],right_button,0)
+                """When i == 1, player is controlled by arrow keys which requires a special font
+                otherwise the default font is used"""
                 if i == 1:
                     down_symbol = self.arrows.render(control_keys[i][0],1,self.black)
                     down_loc = (int((side_length[0]-self.arrows.size(control_keys[i][0])[0])/2+down_rect_loc[i][0]),int((side_length[0]-self.arrows.size(control_keys[i][0])[1])/2+down_rect_loc[i][1]))

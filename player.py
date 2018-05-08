@@ -23,6 +23,8 @@ class Player(object):
         self.alive = True
 
     def draw(self):
+        """Function that blits a rectangle onto the screen representing the player's current position.
+        Is called by the pygamewindowview class' draw method"""
         line_width = .5
         pygame.draw.rect(self.draw_screen,self.color,pygame.Rect(self.x,self.y,self.width,self.height))
 

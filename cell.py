@@ -17,6 +17,7 @@ class Cell(object):
         self.color = (0, 0, 0)
 
     def draw(self):
+        """Used for the pygamewindowview class' _init_draw method to draw the initial playing grid"""
         line_width = 1
         rect = pygame.Rect(self.coordinates, self.side_length)
         pygame.draw.rect(self.draw_screen, self.color, rect, line_width)
