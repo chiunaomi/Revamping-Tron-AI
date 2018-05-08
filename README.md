@@ -38,8 +38,8 @@ $ python3 main.py
 The game can be navagated with keyboard input following on-screen prompts. The game is exited by closing the window or stopping Python.
 
 ## Video
-[Link](Link)
-* add link
+[Video Link](https://drive.google.com/file/d/1DAxVNBRmbhA3LkolbqZ8dEcuxwR-JbaB/view?usp=sharing)
+Video was too large to be uploaded onto GitHub. Link leads to the video on Google Drive.
 
 ## Poster
 
