@@ -48,7 +48,7 @@ In addition to the AI, we have added multi-player and multi-AI modes with their 
 
 640x480
 ## Detailed Game Description (results)
-![Welcome Screen](imgs/Welcome_Screen.png = 320x240)
+![Welcome Screen](imgs/Welcome_Screen.png | height = 240)
 ![Player Selection](imgs/Player_count.png)
 ![Game Mode Selection](imgs/Game_Mode.png)
 ![4 Player Loading/Instruction Screen](imgs/4_players.png)
