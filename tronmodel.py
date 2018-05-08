@@ -153,7 +153,7 @@ class TronModel(object):
         self.screen.fill(black)
         self.screen.blit(label1,((self.width-font.size(player + " WINS!")[0])/2,100))
         self.screen.blit(label2,((self.width-font2.size("Press Space to Restart")[0])/2,200))
-        pygame.display.flip()
+        #pygame.display.flip()
         self.game_over = True
         for player in self.players:
             player.dir = "None"

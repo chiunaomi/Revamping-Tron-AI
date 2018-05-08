@@ -104,7 +104,7 @@ if __name__ == '__main__':
                     model.init_players()
                     end_player_setup = True
                     view.display_controls()
-                    time.sleep(5)
+                    time.sleep(0.5)
                     view._init_draw()
 
             pygame.display.flip()
