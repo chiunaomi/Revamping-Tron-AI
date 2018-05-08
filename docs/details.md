@@ -56,8 +56,9 @@ The user is then given the choice of playing with either between two and four hu
 Prior to the game beginning, keyboard controls for each player are displayed on the loading screen:
 ![4 Players Loading/Instruction Screen](imgs/4_players.png)
 
+##### Gameplay
+1 Player, 3 AI:
 ![1 Player, 3 AI](imgs/1player_3AI_2.gif)
-![4 Players](imgs/4player.gif)
 
-* Show AI effectiveness through end-game screen caps
-* add gif of gameplay
+4 Players:
+![4 Players](imgs/4player.gif)
