@@ -54,8 +54,10 @@ The user is then given the choice of playing with either between two and four hu
 ![Game Mode Selection](imgs/Game_Mode.png)
 ![Player Selection](imgs/Player_count.png)
 Prior to the game beginning, keyboard controls for each player are displayed on the loading screen:
-![4 Player Loading/Instruction Screen](imgs/4_players.png)
+![4 Players Loading/Instruction Screen](imgs/4_players.png)
 
+![1 Player, 3 AI](imgs/1player_3AI_2.gif)
+![4 Players](imgs/4player.gif)
 
 * Show AI effectiveness through end-game screen caps
 * add gif of gameplay

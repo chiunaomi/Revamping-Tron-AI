@@ -33,7 +33,7 @@ To play our game after the repository has been cloned, run the `main.py` file.
 ### Usage
 Run main.py with Python 3
 ```bash
-python3 main.py
+$ python3 main.py
 ```
 The game can be navagated with keyboard input following on-screen prompts. The game is exited by closing the window or stopping Python.
 
