@@ -45,7 +45,7 @@ class TronModel(object):
         self.color_strings = ["Orange","Green","Blue","Red"]
         self.game_over = False
         self.mode = None
-        self.num_players = None
+        self.num_players = 0
         self.num_CPU = 0
 
     def init_players(self):
@@ -56,7 +56,7 @@ class TronModel(object):
             y_pos = [(self.height/2),(self.height/2)]
         else:
             y_pos = [(self.height/2-50),(self.height/2-50),(self.height/2+50),(self.height/2+50)]
-        if self.num_players == None:
+        if self.num_players == 0:
             return
         if self.num_players == 1:
             self.player1 = Player(self.screen,10,x_pos[0],y_pos[0],s_dir[0],self.color_strings[0],self.player_colors[0])
@@ -76,8 +76,8 @@ class TronModel(object):
             self.player3 = Player(self.screen,10,x_pos[0],y_pos[2],s_dir[0],self.color_strings[2],self.player_colors[2])
             self.player4 = Player(self.screen,10,x_pos[1],y_pos[3],s_dir[1],self.color_strings[3],self.player_colors[3])
             self.players = [self.player1,self.player2,self.player3,self.player4]
-        if self.num_CPU == None:
-            return
+        if self.num_CPU == 0:
+            self.bots = []
         if self.num_CPU == 1:
             self.bot1 = BasicBot(self,self.screen,10,x_pos[self.num_players%2],y_pos[self.num_players],s_dir[self.num_players%2],self.color_strings[self.num_players],self.player_colors[self.num_players])
             self.bots = [self.bot1]
