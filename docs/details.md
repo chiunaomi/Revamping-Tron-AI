@@ -46,9 +46,9 @@ The AI component of our final system design relies on a flood fill algorithm whi
 
 In addition to the AI, we have added multi-player and multi-AI modes with their respective configuration screens, as well as improved stability and function to the overall program.
 
-
+640x480
 ## Detailed Game Description (results)
-![Welcome Screen](imgs/Welcome_Screen.png)
+![Welcome Screen](imgs/Welcome_Screen.png = 320x240)
 ![Player Selection](imgs/Player_count.png)
 ![Game Mode Selection](imgs/Game_Mode.png)
 ![4 Player Loading/Instruction Screen](imgs/4_players.png)
