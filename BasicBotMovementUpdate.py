@@ -1,5 +1,4 @@
-from player import*
-from tronmodelbot2 import*
+from player import Player
 import random
 #argument that takes the position of the other player and takes it into consideration
 #input single numbers into the functions as much as possible
@@ -12,7 +11,7 @@ class BasicBot(Player):
         #reset it so the model outputs a new list and sends the list each time to the AI
         self.model = model
         self.cell = None
-        self.direction1 = "r"
+        self.direction1 = direction
 
     def random_choice_move(self):
         directions = ["r", "l", "u", "d"]
@@ -39,10 +38,10 @@ class BasicBot(Player):
             if self.has_collided(possible_head):
                 safe.remove(direction)
             if direction in safe:
-                if self.direction_valid(direction) == False:
+                if not self.direction_valid(direction):
                     safe.remove(direction)
-        if direction not in safe and safe != []:
-            direction = random.choice(safe)
+        #if direction not in safe and safe != []:
+            #direction = random.choice(safe)
         choices = len(safe)
         choose = random.randint(0, choices - 1)
         self.dir = safe[choose]
