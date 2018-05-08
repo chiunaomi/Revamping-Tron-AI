@@ -48,9 +48,12 @@ In addition to the AI, we have added multi-player and multi-AI modes with their 
 
 640x480
 ## Detailed Game Description (results)
-![Welcome Screen](imgs/Welcome_Screen.png){:height="50%" width="50%"}
-![Player Selection](imgs/Player_count.png){:height="50%" width="50%"}
+Once launched, the user is presented with a splash screen:
+![Welcome Screen](imgs/Welcome_Screen.png)
+The user is then given the choice of playing with either between two and four human players through keyboard input, or against between one and three AI bots:
 ![Game Mode Selection](imgs/Game_Mode.png)
+![Player Selection](imgs/Player_count.png)
+Prior to the game beginning, keyboard controls for each player are displayed on the loading screen:
 ![4 Player Loading/Instruction Screen](imgs/4_players.png)
 
 
